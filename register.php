@@ -15,8 +15,8 @@
 		  if (mysqli_query($conn, $sql))
 			{
 				echo $sql;
-				echo '<script type="text/javascript">
-window.location.href = "/conFusion/index.php";</script>';
+				echo 	'<script type="text/javascript">
+window.location.href = "index.php";</script>';
       }
       else
         {

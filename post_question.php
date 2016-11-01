@@ -1,3 +1,4 @@
+
 <?php
 
 include "connectdb.php";
@@ -32,7 +33,7 @@ echo '<div class="container">
             </div>
         </form>
         </div>
-    </div></div
+    </div></div>
 
 </div>
 
@@ -41,7 +42,7 @@ echo '<div class="container">
 
 ?>
 
-    <?php
+<?php
 if(!empty($_POST)){
 
         $title = $_POST["title"];
@@ -69,19 +70,22 @@ window.location.href = "index.php";</script>';
     }
 
  ?>
-        <div id="templates" class="hidden">
-            <div class="upvote">
-                <a class="upvote" title="This is good stuff. Vote it up! (Click again to undo)"></a>
-                <span class="count" title="Total number of votes"></span>
-                <a class="downvote" title="This is not useful. Vote it down. (Click again to undo)"></a>
-                <a class="star" title="Mark as favorite. (Click again to undo)"></a>
-            </div>
-        </div>
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <div id="templates" class="hidden">
+    		<div class="upvote">
+    				<a class="upvote" title="This is good stuff. Vote it up! (Click again to undo)"></a>
+    				<span class="count" title="Total number of votes"></span>
+    				<a class="downvote" title="This is not useful. Vote it down. (Click again to undo)"></a>
+    				<a class="star" title="Mark as favorite. (Click again to undo)"></a>
+    		</div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <?php include "footer.php"; ?>
-            </body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+</body>
 
-            </html>
+</html>

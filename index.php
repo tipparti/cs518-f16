@@ -20,9 +20,9 @@ include "header.php";?>
                       <div class="row">
                       <div class="col-xs-12 col-sm-1">
                       <div id="topic" class="upvote">
-    <a class="upvote"></a>
+                      <a class="upvote " name="upvote" href="upvotes.php?qid='.$qid.'"></a>
     <span class="count">0</span>
-    <a class="downvote"></a>
+    <a class="downvote " name="downvote" href="dnvotes.php?qid='.$qid.'"></a>
     <a class="star"></a>
 </div>
 </div>
@@ -44,7 +44,7 @@ include "header.php";?>
                 if (mysqli_num_rows($result_avatar) > 0) {
                           while($row_avatar = mysqli_fetch_array($result_avatar)) {
                             $imgname = $row_avatar['filename'];
-                  echo 'asked '.date('M j G:i', strtotime(date($rowqa['posted_dt']))).' ago by <a href="profile.php"><img src="/conFusion/avatars/'.$imgname.'" width="25" height="25"/> '.$rowqa['uname'].'</a></div>';
+                  echo 'asked '.date('M j G:i', strtotime(date($rowqa['posted_dt']))).' ago by <a href="profile.php"><img src="avatars/'.$imgname.'" width="25" height="25"/> '.$rowqa['uname'].'</a></div>';
                   }
                 }
                 else
