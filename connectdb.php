@@ -1,7 +1,7 @@
 <?php
 $dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = 'root';
+$dbuser = 'admin';
+$dbpass = 'M0n@rch$';
 $dbname = 'cs518';
 
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname); // Check connection
