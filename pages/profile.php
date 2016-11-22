@@ -55,7 +55,7 @@ foreach ($points as $key => $value) {
        header("Location: /pages/profile.php");
     ?>
 
-        <div id="output"><!-- error or success results --></div>
+        <div id="error"><!-- error or success results --></div>
 		</div>
 		<div class="col-md-5">
 			<blockquote>
@@ -66,7 +66,7 @@ foreach ($points as $key => $value) {
       <form action="/app/process.php" method="post" enctype="multipart/form-data" id="upload_form">
           <div class="form-inline">
    <div class="form-group">
-     <input type="file" name="__files[]"  multiple>
+     <input type="file" name="__files[]" multiple>
    </div>
    <input type="submit" class="btn btn-sm btn-primary" name="__submit__" value="Upload files"/>
  </div>
