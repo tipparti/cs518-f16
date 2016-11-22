@@ -10,7 +10,7 @@ $config["thumbnail_size"]  			= 200; //Thumbnails will be cropped to 200x200 pix
 $config["thumbnail_prefix"]			= "thumb_"; //Normal thumb Prefix
 $config["destination_folder"]			= $_SERVER['DOCUMENT_ROOT'].'/img/uploads/'; //upload directory ends with / (slash)
 $config["thumbnail_destination_folder"]		= $_SERVER['DOCUMENT_ROOT'].'/img/uploads/'; //upload directory ends with / (slash)
-$config["upload_url"] 				= 'http://localhost:8888/img/uploads/';
+$config["upload_url"] 				= '/img/uploads/';
 $config["quality"] 				= 90; //jpeg quality
 $config["random_file_name"]			= true; //randomize each file name
 
