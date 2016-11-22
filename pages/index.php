@@ -62,6 +62,51 @@ if($last != 1){
     }
 }
 ?>
+			<div class="modal fade firstModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"><!--This class matches the button target-->
+			 <div class="modal-dialog modal-lg"><!--This will also affect your modal size, look into it-->
+				 <div class="modal-content">
+					 <div id="carousel-controls" class="carousel slide" data-ride="carousel"><!--This calls the controls for the carousel, note the id-->
+						 <!-- Wrapper for slides -->
+							 <div class="carousel-inner">
+								 <div class="item active">
+									 <img class="img-responsive" src="/img/1.png" alt="...">
+								 </div>
+								 <div class="item">
+									 <img class="img-responsive" src="/img/2.png" alt="...">
+
+								 </div>
+								 <div class="item">
+									 <img class="img-responsive" src="/img/3.png" alt="...">
+
+								 </div>
+								 <div class="item">
+									<img class="img-responsive" src="/img/4.png" alt="...">
+
+								</div>
+								<div class="item">
+									<img class="img-responsive" src="/img/5.png" alt="...">
+
+								</div>
+								<div class="item">
+									<img class="img-responsive" src="/img/6.png" alt="...">
+
+								</div>
+								<div class="item">
+									<img class="img-responsive" src="/img/7.png" alt="...">
+
+								</div>
+							 </div>
+							 <!-- Controls -->
+							 <a class="left carousel-control" href="#carousel-controls" role="button" data-slide="prev">
+								 <span class="glyphicon glyphicon-chevron-left"></span>
+							 </a>
+							 <a class="right carousel-control" href="#carousel-controls" role="button" data-slide="next">
+								 <span class="glyphicon glyphicon-chevron-right"></span>
+							 </a>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
 <div class="container">
 
 <!-------->
@@ -88,7 +133,7 @@ if($last != 1){
                 <ul class="list-group">
                     <li class="list-group-item">
                       <?php
-										    if (count($red) != 0){
+
                        foreach ($red as $key => $value) {
 												 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 												 if(count($profile) == 1){
@@ -136,7 +181,6 @@ if($last != 1){
                           $hrred--;
                         }
                       }
-										}
                         ?>
                     </li>
                 </ul>
@@ -157,9 +201,7 @@ if($last != 1){
 							<ul class="list-group">
 									<li class="list-group-item">
 										<?php
-											if(count($blue) != 0){
-										 foreach ($blue as $key => $value) {
-											$profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
+										 foreach ($blue as $key => $value) { $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 										 if(count($profile) == 1){
 										 foreach ($profile as $key => $val){
 											$pic = $val['filename'];
@@ -204,7 +246,6 @@ if($last != 1){
 												$hrblue--;
 											}
 										}
-									}
 											?>
 									</li>
 							</ul>
@@ -223,7 +264,6 @@ if($last != 1){
 							<ul class="list-group">
 									<li class="list-group-item">
 										<?php
-											if(count($yellow) != 0){
 										 foreach ($yellow as $key => $value) {
 											 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 										 if(count($profile) == 1){
@@ -270,7 +310,6 @@ if($last != 1){
 												$hryellow--;
 											}
 										}
-									}
 											?>
 									</li>
 							</ul>

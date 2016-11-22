@@ -29,6 +29,7 @@ $(this).parents('.input-group-btn');
         <!-- <li><a href="/pages/tags.php">Tags</a></li> -->
         <!-- <li><a href="/pages/users.php">Users</a></li> -->
         <li><a href="/pages/ask.php">Ask a Question</a></li>
+        <li><a data-toggle="modal" data-target=".firstModal">Help?</a><!--Target Here--></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
