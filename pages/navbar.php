@@ -98,7 +98,7 @@ $(this).parents('.input-group-btn');
              <li><a href="/pages/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
            </ul>';
           // if ($_SESSION ['userid'] == $userid){
-            // echo  '<div  class="ratio img-responsive img-circle" style="background-image: url("http://localhost:8888/img/uploads/"'.$filename.');"></div>'.stripslashes($_SESSION['name']).'</a></li>
+            // echo  '<div  class="ratio img-responsive img-circle" style="background-image: url("http://localhost:8888http://cs.odu.edu/~ntippart/img/uploads/"'.$filename.');"></div>'.stripslashes($_SESSION['name']).'</a></li>
             //   <li><a href="/pages/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             // </ul>';
           // }else {
