@@ -22,7 +22,7 @@ class Db {
 			// Load configuration as an array. Use the actual location of your configuration file
 			// Put the configuration file outside of the document root
 			// $config = parse_ini_file('../config.ini');
-			self::$connection = new mysqli('localhost','admin','M0n@rch$',$config['dbname']);
+			self::$connection = new mysqli('localhost','admin','M0n@rch$','cs518');
 		}
 
 		// If connection was not successful, handle the error
