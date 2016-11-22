@@ -4,9 +4,9 @@ include ("header.php");
 include ("navbar.php");
 include ("../db/db.php");
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 $connection = new Db();
 $today = date('Y-m-d H:i:s', time());
