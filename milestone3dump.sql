@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 22, 2016 at 08:18 PM
+-- Generation Time: Nov 22, 2016 at 10:38 PM
 -- Server version: 5.6.28
 -- PHP Version: 5.6.25
 
@@ -135,10 +135,21 @@ CREATE TABLE `qa_posts` (
 --
 
 INSERT INTO `qa_posts` (`postid`, `type`, `parentid`, `acount`, `amaxvote`, `userid`, `upvotes`, `downvotes`, `netvotes`, `views`, `flagcount`, `format`, `created`, `updated`, `title`, `content`, `tags`, `selects`, `s_userid`) VALUES
-(2, 'Q', NULL, 1, 0, 1, 0, 0, 2, 0, 1, 'html', '2016-11-22 02:13:11', NULL, 'b&gt;DO&lt;/b&gt; Exist', '<pre>\r\n~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;</pre>\r\n', NULL, NULL, 0),
+(2, 'Q', NULL, 4, 0, 1, 0, 0, 2, 0, 0, 'html', '2016-11-22 02:13:11', NULL, 'b&gt;DO&lt;/b&gt; Exist', '<pre>\r\n~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;</pre>\r\n', NULL, NULL, 0),
 (3, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 04:14:06', NULL, NULL, '<p>?:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you canno</p>\r\n', NULL, NULL, 0),
 (4, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 09:16:30', NULL, 'Alerts', '<p>Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.</p>\r\n', NULL, NULL, 0),
-(5, 'Q', NULL, 0, 0, 3, 0, 0, 0, 0, 0, 'html', '2016-11-22 13:01:59', NULL, 'Ghosts &lt;b&gt;DO&lt;/b&gt;', '<pre>\r\n~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;\r\n</pre>\r\n', NULL, NULL, 0);
+(5, 'Q', NULL, 0, 0, 3, 0, 0, 0, 0, 0, 'html', '2016-11-22 13:01:59', NULL, 'Ghosts &lt;b&gt;DO&lt;/b&gt;', '<pre>\r\n~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;\r\n</pre>\r\n', NULL, NULL, 0),
+(6, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:33:20', NULL, 'ellejbrunellejbrunellejbrunellej', '<pre>\r\nrunellejbrunellejbrunellejbrunellejbrunellejbrunellejbrunellejbrunelle</pre>\r\n\r\n<pre>\r\nellejbrunellejbrunellejbrunellej</pre>\r\n', NULL, NULL, 0),
+(7, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:33:35', NULL, 'ellejbrunelle', '<pre>\r\nellejbrunellejbrunellejbrunellej</pre>\r\n', NULL, NULL, 0),
+(8, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:28', NULL, '&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(9, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:40', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(10, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:46', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(11, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:51', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(12, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:58', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(13, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:37', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(14, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:54', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(15, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:59', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(16, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:38:04', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -464,7 +475,7 @@ ALTER TABLE `qa_blobs`
 -- AUTO_INCREMENT for table `qa_posts`
 --
 ALTER TABLE `qa_posts`
-  MODIFY `postid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `postid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `qa_users`
 --
