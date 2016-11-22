@@ -1,0 +1,51 @@
+div.container a {
+  text-decoration: none;
+}
+a.hover{
+  color: #3af;
+}
+form a {
+  color:black !important;
+}
+
+form.my_form div.upvote div.downvote a.upvote a.downvote{
+  color: black !important;
+}
+form.my_form div.upvote a.upvote.upvote-enabled{
+  color: green !important;
+}
+div.downvote a.upvote.downvote-enabled{
+  color: red !important;
+}
+
+form.freeze a.freeze{
+  color:white !important;
+}
+
+.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+
+.img-circle {
+    border-radius: 20%;
+}
+.img-circle {
+    border-radius: 0;
+}
+
+.ratio {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+}
+.img-circle {
+    border-radius: 20%;
+}
+.img-responsive {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
