@@ -7,9 +7,9 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/db/db.php");
 include $_SERVER['DOCUMENT_ROOT'].'/app/time.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 $bbcode = new BBCode;
 
@@ -88,7 +88,7 @@ if($last != 1){
                 <ul class="list-group">
                     <li class="list-group-item">
                       <?php
-
+										    if (count($red) != 0){
                        foreach ($red as $key => $value) {
 												 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 												 if(count($profile) == 1){
@@ -136,6 +136,7 @@ if($last != 1){
                           $hrred--;
                         }
                       }
+										}
                         ?>
                     </li>
                 </ul>
@@ -156,7 +157,9 @@ if($last != 1){
 							<ul class="list-group">
 									<li class="list-group-item">
 										<?php
-										 foreach ($blue as $key => $value) { $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
+											if(count($blue) != 0){
+										 foreach ($blue as $key => $value) {
+											$profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 										 if(count($profile) == 1){
 										 foreach ($profile as $key => $val){
 											$pic = $val['filename'];
@@ -201,6 +204,7 @@ if($last != 1){
 												$hrblue--;
 											}
 										}
+									}
 											?>
 									</li>
 							</ul>
@@ -219,6 +223,7 @@ if($last != 1){
 							<ul class="list-group">
 									<li class="list-group-item">
 										<?php
+											if(count($yellow) != 0){
 										 foreach ($yellow as $key => $value) {
 											 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 										 if(count($profile) == 1){
@@ -265,6 +270,7 @@ if($last != 1){
 												$hryellow--;
 											}
 										}
+									}
 											?>
 									</li>
 							</ul>
