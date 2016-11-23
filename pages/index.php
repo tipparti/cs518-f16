@@ -69,30 +69,30 @@ if($last != 1){
 						 <!-- Wrapper for slides -->
 							 <div class="carousel-inner">
 								 <div class="item active">
-									 <img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/1.png" alt="...">
+									 <img class="img-responsive" src="/img/1.png" alt="...">
 								 </div>
 								 <div class="item">
-									 <img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/2.png" alt="...">
-
-								 </div>
-								 <div class="item">
-									 <img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/3.png" alt="...">
+									 <img class="img-responsive" src="/img/2.png" alt="...">
 
 								 </div>
 								 <div class="item">
-									<img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/4.png" alt="...">
+									 <img class="img-responsive" src="/img/3.png" alt="...">
+
+								 </div>
+								 <div class="item">
+									<img class="img-responsive" src="/img/4.png" alt="...">
 
 								</div>
 								<div class="item">
-									<img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/5.png" alt="...">
+									<img class="img-responsive" src="/img/5.png" alt="...">
 
 								</div>
 								<div class="item">
-									<img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/6.png" alt="...">
+									<img class="img-responsive" src="/img/6.png" alt="...">
 
 								</div>
 								<div class="item">
-									<img class="img-responsive" src="http://cs.odu.edu/~ntippart/img/7.png" alt="...">
+									<img class="img-responsive" src="/img/7.png" alt="...">
 
 								</div>
 							 </div>
@@ -159,7 +159,7 @@ if($last != 1){
                                     <a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
                                         </a>
                                     <div class="mic-info form-inline">
-                                        asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='http://cs.odu.edu/~ntippart/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
+                                        asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
                                     </div>
                                 </div>
                                 <!-- <div class="action">
@@ -224,7 +224,7 @@ if($last != 1){
 																	<a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
 																			</a>
 																	<div class="mic-info">
-																		asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='http://cs.odu.edu/~ntippart/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
+																		asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
 																	</div>
 															</div>
 															<!-- <div class="action">
@@ -288,7 +288,7 @@ if($last != 1){
 																	<a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
 																			</a>
 																	<div class="mic-info">
-																		asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='http://cs.odu.edu/~ntippart/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
+																		asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
 																	</div>
 															</div>
 															<!-- <div class="action">

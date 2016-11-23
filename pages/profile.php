@@ -9,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 date_default_timezone_set('America/New_York');
 
 
-$config["upload_url"] = 'http://cs.odu.edu/~ntippart/img/uploads/';
+$config["upload_url"] = '/img/uploads/';
 
 $connection = new Db();
 $bbcode = new BBCode;
