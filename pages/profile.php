@@ -382,21 +382,21 @@ $(my_form_id).on( "submit", function(event) {
 			var post_url = $(this).attr("action"); //get action URL of form
 
 			//jQuery Ajax to Post form data
-			$.ajax({
-				url : "http://tipparti.cs518.cs.odu.edu/app/process.php",
-				type: "POST",
-				data : form_data,
-				contentType: "multipart/form-data",
-				cache: false,
-				processData:false,
-				mimeType:"multipart/form-data"
-			}).done(function(res){ //
-				$(my_form_id)[0].reset(); //reset form
-				$(result_output).html(res); //output response from server
-        document.location.reload();
-				submit_btn.val("Upload").prop( "disabled", false);
-        //enable submit button once ajax is done
-			});
+			// $.ajax({
+			// 	url : "http://tipparti.cs518.cs.odu.edu/app/process.php",
+			// 	type: "POST",
+			// 	data : form_data,
+			// 	contentType: "multipart/form-data",
+			// 	cache: false,
+			// 	processData:false,
+			// 	mimeType:"multipart/form-data"
+			// }).done(function(res){ //
+			// 	$(my_form_id)[0].reset(); //reset form
+			// 	$(result_output).html(res); //output response from server
+      //   document.location.reload();
+			// 	submit_btn.val("Upload").prop( "disabled", false);
+      //   //enable submit button once ajax is done
+			// });
 		}
 	}
 
