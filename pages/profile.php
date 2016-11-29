@@ -390,7 +390,7 @@ $(my_form_id).on( "submit", function(event) {
 				cache: false,
 				processData:false,
 				mimeType:"multipart/form-data"
-			}).success(function(res){ //
+			}).done(function(res){ //
 				$(my_form_id)[0].reset(); //reset form
 				$(result_output).html(res); //output response from server
         document.location.reload();
