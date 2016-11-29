@@ -386,7 +386,7 @@ $(my_form_id).on( "submit", function(event) {
 				url : "http://tipparti.cs518.cs.odu.edu/app/process.php",
 				type: "POST",
 				data : form_data,
-				contentType: false,
+				contentType: "multipart/form-data",
 				cache: false,
 				processData:false,
 				mimeType:"multipart/form-data"
