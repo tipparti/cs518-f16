@@ -5,8 +5,8 @@ date_default_timezone_set('America/New_York');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://use.fontawesome.com/ce00181375.js"></script>
   <head>
+    <script src="https://use.fontawesome.com/ce00181375.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
