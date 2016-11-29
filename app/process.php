@@ -8,8 +8,8 @@ $config["generate_thumbnails"]			= true;
 $config["image_max_size"] 			= 500; //Maximum image size (height and width)
 $config["thumbnail_size"]  			= 200; //Thumbnails will be cropped to 200x200 pixels
 $config["thumbnail_prefix"]			= "thumb_"; //Normal thumb Prefix
-$config["destination_folder"]			= '/img/uploads/'; //upload directory ends with / (slash)
-$config["thumbnail_destination_folder"]		= 'img/uploads/';
+$config["destination_folder"]			= $_SERVER['DOCUMENT_ROOT'].'/img/uploads/'; //upload directory ends with / (slash)
+$config["thumbnail_destination_folder"]		= $_SERVER['DOCUMENT_ROOT'].'/img/uploads/';
  //upload directory ends with / (slash)
 $config["upload_url"] 				= 'http://tipparti.cs518.cs.odu.edu/img/uploads/';
 $config["quality"] 				= 90; //jpeg quality
@@ -26,7 +26,7 @@ $conf = $_FILES["__files"];
 
 //include sanwebe impage resize class
 include("resize.class.php");
-include("/db/db.php");
+include($_SERVER['DOCUMENT_ROOT']."/db/db.php");
 
 $connection = new  Db();
 
