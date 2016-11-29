@@ -383,7 +383,7 @@ $(my_form_id).on( "submit", function(event) {
 
 			//jQuery Ajax to Post form data
 			$.ajax({
-				url : post_url,
+				url : "http://tipparti.cs518.cs.odu.edu/app/process.php",
 				type: "POST",
 				data : form_data,
 				contentType: false,
