@@ -63,7 +63,7 @@ foreach ($points as $key => $value) {
 <?php echo $_SESSION['name']; ?>
             </p> <small>Score: 	<?php echo $totalpoints; ?> points (ranked #3)</small>
 			</blockquote>
-      <form action="/app/process.php" method="post" enctype="multipart/form-data" id="upload_form">
+      <form action="../app/process.php" method="post" enctype="multipart/form-data" id="upload_form">
           <div class="form-inline">
    <div class="form-group">
      <input type="file" name="__files[]" multiple>
