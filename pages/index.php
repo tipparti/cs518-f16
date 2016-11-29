@@ -58,7 +58,7 @@ if($last != 1){
 	}
   if ($pagenum != $last) {
         $next = $pagenum + 1;
-        $paginationCtrls .= '<li><a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'" rel="next">»</a></span></li> ';
+        $paginationCtrls .= '<li><span><a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'" rel="next">»</a></span></li> ';
     }
 }
 ?>
