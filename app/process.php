@@ -48,6 +48,7 @@ try{
 		$result = $connection -> query("INSERT INTO `qa_blobs` (`filename`, `userid`, `created`) VALUES (".$imgname.",".$_SESSION['userid'].",".$date.");");
 		$get = $connection -> query("UPDATE `qa_users`, (SELECT `blobid`, `userid`,`filename` FROM `qa_blobs`) as table1 SET `avatarblobid`= table1.`blobid` WHERE `qa_users`.`userid`=table1.`userid` AND table1.`filename`=".$imgname.";");
 		// echo '<img src="'.$config["upload_url"].$response.'" class="img-thumbnail" title="'.$response.'" />';
+		echo $imgname;
 	}
 
 	//output images
