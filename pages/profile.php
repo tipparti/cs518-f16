@@ -52,7 +52,7 @@ foreach ($points as $key => $value) {
         echo '<img src="'.$config["upload_url"].$value['filename'].'" class="img-thumbnail" title="'.$value['filename'].'" />';
 
       }
-       header("Location: /pages/profile.php");
+      //  header("Location: /pages/profile.php");
     ?>
 
         <div id="error"><!-- error or success results --></div>
@@ -384,9 +384,9 @@ $(my_form_id).on( "submit", function(event) {
 			//jQuery Ajax to Post form data
 			$.ajax({
 				url : post_url,
-				type: "GET",
+				type: "POST",
 				data : form_data,
-				contentType: "multipart/form-data",
+				contentType: false,
 				cache: false,
 				processData:false,
 				mimeType:"multipart/form-data"
