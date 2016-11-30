@@ -30,7 +30,7 @@ $conf = $_FILES["__files"];
 
 //include sanwebe impage resize class
 include("resize.class.php");
-include($_SERVER['DOCUMENT_ROOT']."/db/db.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/db/db.php");
 
 $connection = new  Db();
 

@@ -2,8 +2,8 @@
 session_start();
 include ("header.php");
 include ("navbar.php");
-include_once '../db/db.php';
-include '../app/time.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/db/db.php';
+include $_SERVER['DOCUMENT_ROOT'].'/app/time.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 
 date_default_timezone_set('America/New_York');
