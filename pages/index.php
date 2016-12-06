@@ -62,54 +62,10 @@ if($last != 1){
     }
 }
 ?>
-			<div class="modal fade firstModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"><!--This class matches the button target-->
-			 <div class="modal-dialog modal-lg"><!--This will also affect your modal size, look into it-->
-				 <div class="modal-content">
-					 <div id="carousel-controls" class="carousel slide" data-ride="carousel"><!--This calls the controls for the carousel, note the id-->
-						 <!-- Wrapper for slides -->
-							 <div class="carousel-inner">
-								 <div class="item active">
-									 <img class="img-responsive" src="/img/1.png" alt="...">
-								 </div>
-								 <div class="item">
-									 <img class="img-responsive" src="/img/2.png" alt="...">
 
-								 </div>
-								 <div class="item">
-									 <img class="img-responsive" src="/img/3.png" alt="...">
 
-								 </div>
-								 <div class="item">
-									<img class="img-responsive" src="/img/4.png" alt="...">
-
-								</div>
-								<div class="item">
-									<img class="img-responsive" src="/img/5.png" alt="...">
-
-								</div>
-								<div class="item">
-									<img class="img-responsive" src="/img/6.png" alt="...">
-
-								</div>
-								<div class="item">
-									<img class="img-responsive" src="/img/7.png" alt="...">
-
-								</div>
-							 </div>
-							 <!-- Controls -->
-							 <a class="left carousel-control" href="#carousel-controls" role="button" data-slide="prev">
-								 <span class="glyphicon glyphicon-chevron-left"></span>
-							 </a>
-							 <a class="right carousel-control" href="#carousel-controls" role="button" data-slide="next">
-								 <span class="glyphicon glyphicon-chevron-right"></span>
-							 </a>
-					 </div>
-				 </div>
-			 </div>
-		 </div>
 <div class="container">
 
-<!-------->
 <div id="content">
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
         <li class="active"><a href="#red" data-toggle="tab">Recent</a></li>
@@ -329,7 +285,10 @@ if($last != 1){
         </div>
     </div>
 </div>
+</div>
+
+
 <?php
 
-include("footer.php");
+include($_SERVER['DOCUMENT_ROOT']."/pages/footer.php");
 ?>

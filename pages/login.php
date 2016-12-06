@@ -2,6 +2,9 @@
 include ("header.php");
 include ("navbar.php");
 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 ?>
 <div class="container">
     <div class="row">
@@ -39,7 +42,7 @@ include ("navbar.php");
                       <hr/>
                     <center><h4>OR</h4></center>
 
-            <a href="#" class="btn btn-lg btn-block onl_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
+            <a href="github.php" class="btn btn-lg btn-block onl_btn-github" data-toggle="tooltip" data-placement="top" title="GitHub">
               <i class="fa fa-github fa-2x"></i>
               <span class="hidden-xs"></span>
             </a>

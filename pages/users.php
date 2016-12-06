@@ -8,7 +8,7 @@ include '../app/time.php';
 date_default_timezone_set('America/New_York');
 
 
-$config["upload_url"] = '/img/uploads/';
+$config["upload_url"] = 'http://localhost:8888/img/uploads/';
 
 
 $connection = new Db();

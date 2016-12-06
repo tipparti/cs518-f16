@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 22, 2016 at 10:38 PM
+-- Generation Time: Dec 06, 2016 at 06:47 PM
 -- Server version: 5.6.28
 -- PHP Version: 5.6.25
 
@@ -100,7 +100,12 @@ CREATE TABLE `qa_blobs` (
 INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `created`) VALUES
 (1, 'thumb_583419ae0292e.jpg', 3, '2016-11-22 05:10:54'),
 (2, 'thumb_58344e3e0aaaa.jpg', 1, '2016-11-22 08:55:10'),
-(3, 'thumb_58347c65495ee.png', 1, '2016-11-22 12:12:05');
+(3, 'thumb_58347c65495ee.png', 1, '2016-11-22 12:12:05'),
+(4, 'thumb_5834bf1e03bb0.png', 1, '2016-11-22 16:56:46'),
+(5, 'thumb_5834bf234df87.png', 1, '2016-11-22 16:56:51'),
+(6, 'thumb_583e27da04f37.jpg', 1, '2016-11-29 20:14:02'),
+(7, 'thumb_583e27ff2474f.jpg', 1, '2016-11-29 20:14:39'),
+(8, 'thumb_583e2821bc99d.jpg', 1, '2016-11-29 20:15:13');
 
 -- --------------------------------------------------------
 
@@ -146,10 +151,10 @@ INSERT INTO `qa_posts` (`postid`, `type`, `parentid`, `acount`, `amaxvote`, `use
 (10, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:46', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
 (11, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:51', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
 (12, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:58', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(13, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:37', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(13, 'Q', NULL, 0, 0, 1, 0, 0, 1, 0, 0, 'html', '2016-11-22 16:37:37', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
 (14, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:54', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(15, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:59', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(16, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:38:04', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0);
+(15, 'A', 2, 0, 0, 1, 0, 0, -1, 0, 0, 'html', '2016-11-22 16:37:59', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
+(16, 'A', 2, 0, 0, 1, 0, 0, 1, 0, 0, 'html', '2016-11-22 16:38:04', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +215,7 @@ CREATE TABLE `qa_users` (
 --
 
 INSERT INTO `qa_users` (`userid`, `created`, `email`, `handle`, `avatarblobid`, `avatarwidth`, `avatarheight`, `passcheck`, `loggedin`) VALUES
-(1, '2016-11-22 01:51:08', 'admin@xyz.edu', 'admin', 3, NULL, NULL, '4e77c5eed085c1a433a6ddc8bf4130c9', '2016-11-22 01:51:08'),
+(1, '2016-11-22 01:51:08', 'admin@xyz.edu', 'admin', 8, NULL, NULL, '4e77c5eed085c1a433a6ddc8bf4130c9', '2016-11-22 01:51:08'),
 (2, '2016-11-22 02:26:33', 'jbrunelle@xyz.edu', 'jbrunelle', NULL, NULL, NULL, '40e77c0dcd4c2f84b93a340695c4a22c', '2016-11-22 02:26:33'),
 (3, '2016-11-21 00:27:06', 'dbarrett@xyz.edu', 'dbarrett', 1, NULL, NULL, 'fda14faa279c1123604c06f756c7af14', '2016-11-22 04:27:06'),
 (4, '2016-11-22 04:28:50', 'pvenkman@xyz.edu', 'pvenkman', NULL, NULL, NULL, '41f05c9bf093ca30867d7f352849fe15', '2016-11-22 04:28:50'),
@@ -238,7 +243,11 @@ INSERT INTO `qa_uservotes` (`postid`, `userid`, `vote`, `flag`) VALUES
 (2, 2, 1, 0),
 (2, 3, 1, 0),
 (3, 3, 0, 0),
-(4, 3, 0, 0);
+(4, 3, 0, 0),
+(13, 3, 1, 0),
+(14, 3, 0, 0),
+(15, 3, -1, 0),
+(16, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -470,7 +479,7 @@ ALTER TABLE `avatar`
 -- AUTO_INCREMENT for table `qa_blobs`
 --
 ALTER TABLE `qa_blobs`
-  MODIFY `blobid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `blobid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `qa_posts`
 --
