@@ -5,7 +5,7 @@ $connection = new Db();
 
 $like = $_REQUEST["searchall"];
 
-$query = $connection -> SELECT("SELECT `qa_users`.`userid`, `handle`, `filename` FROM `qa_users` LEFT JOIN `qa_blobs` ON `qa_users`.`userid` = `qa_blobs`.`userid` WHERE `handle` LIKE '%".$like."%' GROUP BY `qa_users`.`userid`");
+$query = $connection -> SELECT("SELECT `qa_users`.`userid`, `handle`, `filename` FROM `qa_users` LEFT JOIN `qa_blobs` ON `qa_users`.`userid` = `qa_blobs`.`userid` WHERE `handle` LIKE '".$like."%' GROUP BY `qa_users`.`userid`");
 
 $sql = $connection -> SElECT("");
 
