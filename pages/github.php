@@ -9,10 +9,10 @@ error_reporting(E_ALL);
 
 $clientId = "332ee047993e8908ad81";
 $clientSecret = "90f90533343d94fa6bca81bdf8da5402b7219ac7";
-// $redirect_url = 'http:http://tipparti.cs518.cs.odu.edu/pages/github.php';
-$redirect_url = 'http://localhost:8888/pages/github.php';
+$redirect_url = 'http://tipparti.cs518.cs.odu.edu/pages/github.php';
+// $redirect_url = 'http://localhost:8888/pages/github.php';
 
-$ROOTURI = "http://localhost:8888/index.php";
+$ROOTURI = "http://tipparti.cs518.cs.odu.edu/index.php";
 
 //get request , either code from github, or login request
 //authorised at github
