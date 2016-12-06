@@ -2,6 +2,9 @@
 session_start();
 date_default_timezone_set('America/New_York');
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ############ Configuration ##############
 $config["generate_image_file"]			= true;
 $config["generate_thumbnails"]			= true;
@@ -14,7 +17,7 @@ $config["upload_url"] 				= 'http://tipparti.cs518.cs.odu.edu/img/uploads/';
 $config["quality"] 				= 90; //jpeg quality
 $config["random_file_name"]			= true; //randomize each file name
 
-
+echo $_SERVER['DOCUMENT_ROOT'];
 if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 	exit;  //try detect AJAX request, simply exist if no Ajax
 }
