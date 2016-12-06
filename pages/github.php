@@ -87,7 +87,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/pages/navbar.php';
   </div>
   </div>
 </div>
+
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/pages/footer.php';
+
 } else {
   $url = "https://github.com/login/oauth/authorize?client_id=$clientId&redirect_uri=$redirect_url&scope=user";
   header("Location: $url");
