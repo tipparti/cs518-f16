@@ -128,7 +128,7 @@ $('#alertFadeOut').fadeOut(1800);
 
         //Render the recaptcha2 on the element with ID "recaptcha2"
         register = grecaptcha.render('register', {
-          'sitekey' : '6LdNcg4UAAAAAANlK7GMrsAd3UN8J8k0M3NLMl2_', //Replace this with your Site key
+          'sitekey' : '6LdNcg4UAAAAAOq8-dCXaF3v54LTnOrVX59N6WOu', //Replace this with your Site key
           'theme' : 'light'
         });
       };
