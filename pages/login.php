@@ -37,7 +37,9 @@ include ("navbar.php");
 
 			    	    </div>
                 <div class="form-group" style="margin-left:12px;">
-                  <div class="g-recaptcha" data-sitekey="6LdZcQ4UAAAAADbwrtSdZRmM67HXTwOg04iU9APq"></div>
+                  <div id="login">
+
+                  </div>
                   </div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
 			    	</fieldset>
@@ -62,7 +64,9 @@ include ("navbar.php");
 										<input type="password" name="password" id="password" tabindex="2" class="form-control"  required placeholder="Password">
 									</div>
                   <div class="form-group" style="margin-left:12px;">
-                    <div class="g-recaptcha" data-sitekey="6LdNcg4UAAAAAOq8-dCXaF3v54LTnOrVX59N6WOu"></div>
+                    <div id="register">
+
+                    </div>
                   </div>
 									<div class="form-group">
 										<div class="row">
@@ -112,6 +116,22 @@ include ("navbar.php");
 
 });
 $('#alertFadeOut').fadeOut(1800);
+
+      var login;
+      var register;
+      var myCallBack = function() {
+        //Render the recaptcha1 on the element with ID "recaptcha1"
+        login = grecaptcha.render('login', {
+          'sitekey' : '6LdZcQ4UAAAAADbwrtSdZRmM67HXTwOg04iU9APq', //Replace this with your Site key
+          'theme' : 'light'
+        });
+
+        //Render the recaptcha2 on the element with ID "recaptcha2"
+        register = grecaptcha.render('register', {
+          'sitekey' : '6LdNcg4UAAAAAANlK7GMrsAd3UN8J8k0M3NLMl2_', //Replace this with your Site key
+          'theme' : 'light'
+        });
+      };
 </script>
 
 <?php
