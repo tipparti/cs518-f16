@@ -111,24 +111,25 @@ if($last != 1){
                               <div class="text-center"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><!--i class="fa fa-thumbs-o-down" aria-hidden="true"></i--></div>
                             </div>
                             <div class="col-xs-10 col-md-11">
-                                <div>
+																<div class="col-xs-10 col-md-11">
                                     <a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
                                         </a>
+																				<div class="action">
+																				<?php
+																				$tags = $connection -> select("SELECT `qa_tagwords`.`postid`, `qa_tagwords`.`wordid`, `word` FROM `qa_tagwords` INNER JOIN `qa_words` ON `qa_words`.`wordid` = `qa_tagwords`.`wordid` WHERE `qa_tagwords`.`postid` = ".$value['postid'].";");
+																				foreach ($tags as $key => $tagv) {
+																					echo '<a href="/pages/tags.php?tag='.$tagv['word'].'" class="btn btn-labeled btn-xs" title="Edit">
+																							<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;'.$tagv['word'].'
+																					</a>&nbsp;&nbsp;';
+																					}
+																				 ?>
+
+																				</div>
                                     <div class="mic-info form-inline">
                                         asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
                                     </div>
                                 </div>
-                                <!-- <div class="action">
-                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
-                                        <span class="glyphicon glyphicon-ok"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </div> -->
+
                             </div>
                         </div>
                         <?php

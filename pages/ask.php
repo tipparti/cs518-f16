@@ -1,10 +1,8 @@
 <?php
 include ("header.php");
 include ("navbar.php");
-include_once '../db/db.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+
 if(!empty($_SESSION['userid'])){?>
 
   <div class="container">
@@ -15,7 +13,7 @@ if(!empty($_SESSION['userid'])){?>
   	<!-- <div class="alert alert-success col-xs-4" ><strong><span class="glyphicon glyphicon-send"></span> Success! Message sent. (If form ok!)</strong></div>
       <div class="alert alert-danger col-xs-4"><span class="glyphicon glyphicon-alert"></span><strong> Error! Please check the inputs. (If form error!)</strong></div> -->
     </div>
-    <form role="form" method="post" >
+    <form role="form" method="post" id="ask_form" action="/pages/test.php">
       <div class="col-md-12">
           <div class="form-group">
             <div class="col-md-8">
@@ -30,21 +28,58 @@ if(!empty($_SESSION['userid'])){?>
             </div>
         </div>
         <div class="form-group">
-          <div class="col-md-8">
-            <label for="InputTags"> Tags - use hyphens to combine words: </label>
-            <input  class="form-control" name="InputTags" id="InputTags" type="text"></textarea>
+          <div class="col-md-8" >
+            <div class="tags well">
+            <label for="tag" class="control-label">Tags - use hyphens to combine words:</label>
+            <div data-tags-input-name="taggone" id="tag"></div>
+            <p class="help-block">Press Enter, Comma or Spacebar to create a new tag, Backspace or Delete to remove the last one.</p>
+            <div id="test">
+
+            </div>
+        </div>
+            </div>
             </div>
         </div>
         <div class="form-group">
-          <div class="col-md-12"><br>
+          <div  class="col-md-12"><br>
           <button type="submit" name="submit" id="submit" value="Ask the Question" class="btn btn-info btn-md"><span class="glyphicon glyphicon-send"></span>  Ask the Question
           </button>
         </div>
       </div>
     </form>
     <script>
-           CKEDITOR.replace( 'InputContent');
-       </script>
+           CKEDITOR.replace('InputContent');
+            var my_form_id 			= '#ask_form';
+           (function( $, window, document, undefined ) {
+               $( document ).ready(function() {
+                 var $tag_box;
+                   var t = $( "#tag" ).tagging();
+                   t[0].addClass( "form-control" );
+                   console.log( t[0] );
+                   $tag_box = t[0];
+                   $tag_box.tagging( "getTags" );
+                  //  console.log($tag_box);
+
+
+               });
+           })( window.jQuery, window, document );
+        //ID of an element for response output
+        var form_data = new FormData(this); //Creates new FormData object
+        var post_url = $(this).attr("action");
+        $(my_form_id).on( "submit", function(event) {
+           event.preventDefault();
+           $.ajax({
+           type: "POST",
+           url: post_url,
+           data: form_data,
+           cache: false,
+           success: function(result){
+           $("#test").empty();
+           $("#test").append(result);
+           }
+           });
+         });
+          </script>
   </div>
   </div>
   </div>
@@ -53,33 +88,5 @@ if(!empty($_SESSION['userid'])){?>
 else {
   include_once 'check.php';
 }
-
 include("footer.php");
 ?>
-<?php
-if(!empty($_POST)){
-
-  $connection = new Db();
-  $format = '';
-  $userid = $connection -> quote($_SESSION['userid']);
-  $title = $connection -> quote(htmlentities($_POST['InputTitle']));
-  $content = $connection -> quote($_POST['InputContent']);
-  $today = date('Y-m-d H:i:s', time());
-  $date = $connection -> quote($today);
-  if(strip_tags($_POST['InputTitle'])){
-    $format = $connection -> quote('html');
-  }
-  $result = $connection -> query("INSERT INTO `qa_posts` (`type`, `userid`, `format`, `created`, `title`, `content`) VALUES ('Q',".$userid.", ".$format.", ".$date.", ".$title.", ".$content.");");
-  $datecheck = $connection -> select("SELECT * FROM `qa_posts` WHERE `created`=".$date.";");
-  $check = $connection -> select("SELECT `postid` FROM `qa_posts` WHERE `userid`=".$_SESSION['userid']."  AND `created`=".$date." AND `type`= 'Q';");
-  if ($check == true){
-    $postid;
-    foreach ($check as $key => $value) {
-      $postid = $value['postid'];
-    }
-    echo '<script type="text/javascript">
-    window.location.href = "/pages/questions.php?qa='.$postid.'";
-    </script>';
-  }
-}
- ?>

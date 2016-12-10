@@ -18,7 +18,7 @@ date_default_timezone_set('America/New_York');
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
-
+    <link href="/css/tag-basic-style.css" rel="stylesheet">
     <title>Q&amp;A</title>
 
     <!-- Bootstrap core CSS -->
@@ -34,6 +34,8 @@ date_default_timezone_set('America/New_York');
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//cdn.ckeditor.com/4.6.0/full-all/ckeditor.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 
 
 

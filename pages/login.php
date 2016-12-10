@@ -34,7 +34,11 @@ include ("navbar.php");
 			    	    	<label>
 			    	    		<input name="remember" type="checkbox" value="Remember Me"> Remember Me
 			    	    	</label>
+
 			    	    </div>
+                <div class="form-group">
+                  <div class="g-recaptcha" data-sitekey="6LfLcA4UAAAAANLnLJ59UOgFd24wQqvNI8QA-Sh8"></div>
+                </div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
 			    	</fieldset>
 			      	</form>
