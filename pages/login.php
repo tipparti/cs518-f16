@@ -36,7 +36,7 @@ include ("navbar.php");
 			    	    	</label>
 
 			    	    </div>
-                <div class="form-group text-center">
+                <div class="form-group" style="margin-left:12px;">
                   <div class="g-recaptcha" data-sitekey="6LdZcQ4UAAAAADbwrtSdZRmM67HXTwOg04iU9APq"></div>
                   </div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
@@ -81,6 +81,10 @@ include ("navbar.php");
       <div class="col-md-4 col-md-offset-4 alert alert-danger fade in" id="alertFadeOut">
             <strong>Username or Password</strong> not correct
       </div>
+      <?php } elseif ($_GET['check'] == 'recaptcha') {?>
+        <div class="col-md-4 col-md-offset-4 alert alert-danger fade in" id="alertFadeOut">
+              <strong>You are a bot! Go away!</strong>
+        </div>
       <?php } ?>
     </div>
 	</div>

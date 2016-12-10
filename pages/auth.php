@@ -4,9 +4,9 @@ include ("header.php");
 include ("navbar.php");
 include ("../db/db.php");
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 $connection = new Db();
 $today = date('Y-m-d H:i:s', time());
@@ -16,11 +16,19 @@ $date = $connection -> quote($today);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+$secret="6LdZcQ4UAAAAANgBixkVus-hjd52M8pW4nwuovb7";
 if($_GET['type'] == 'login'){
   if (!empty($_POST)){
     $name = $connection -> quote($_POST['handle']);
     $handle = $connection -> quote(md5($_POST['password']));
+    $response = $_POST["g-recaptcha-response"];
+    $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+    $captcha_success = json_decode($verify);
+    if ($captcha_success->success==false) {
+      echo '<script type="text/javascript">
+      window.location.href = "/pages/login.php?check=recaptcha";
+      </script>';	}
+	else if ($captcha_success->success==true) {
     $validate = $connection -> select("SELECT userid, handle  FROM qa_users WHERE `handle`=".$name." and `passcheck`=".$handle.";");
     if (count($validate) === 1){
       foreach ($validate as $key => $value) {
@@ -35,7 +43,7 @@ if($_GET['type'] == 'login'){
       echo '<script type="text/javascript">
       window.location.href = "/pages/login.php?check=invalid";
       </script>';
-    }
+    }}
   }
 
 }
