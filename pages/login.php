@@ -62,8 +62,8 @@ include ("navbar.php");
 										<input type="password" name="password" id="password" tabindex="2" class="form-control"  required placeholder="Password">
 									</div>
                   <div class="form-group" style="margin-left:12px;">
-                    <div class="g-recaptcha" data-sitekey="6LdZcQ4UAAAAADbwrtSdZRmM67HXTwOg04iU9APq"></div>
-                    </div>
+                    <div class="g-recaptcha" data-sitekey="6LdNcg4UAAAAAOq8-dCXaF3v54LTnOrVX59N6WOu"></div>
+                  </div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">

@@ -16,9 +16,9 @@ $date = $connection -> quote($today);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$secret="6LdZcQ4UAAAAANgBixkVus-hjd52M8pW4nwuovb7";
 if($_GET['type'] == 'login'){
   if (!empty($_POST)){
+    $secret="6LdZcQ4UAAAAANgBixkVus-hjd52M8pW4nwuovb7";
     $name = $connection -> quote($_POST['handle']);
     $handle = $connection -> quote(md5($_POST['password']));
     $response = $_POST["g-recaptcha-response"];
@@ -52,6 +52,7 @@ if($_GET['type'] == 'login'){
        $name = $connection -> quote($_POST['username']);
        $email = $connection -> quote($_POST['email']);
        $handle = $connection -> quote(md5($_POST['password']));
+       $secret = '6LdNcg4UAAAAAANlK7GMrsAd3UN8J8k0M3NLMl2_';
        $response = $_POST["g-recaptcha-response"];
        $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
        $captcha_success = json_decode($verify);
