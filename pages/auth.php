@@ -52,6 +52,15 @@ if($_GET['type'] == 'login'){
        $name = $connection -> quote($_POST['username']);
        $email = $connection -> quote($_POST['email']);
        $handle = $connection -> quote(md5($_POST['password']));
+       $response = $_POST["g-recaptcha-response"];
+       $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+       $captcha_success = json_decode($verify);
+       if ($captcha_success->success==false) {
+         echo '<script type="text/javascript">
+         window.location.href = "/pages/login.php?check=recaptcha";
+         </script>';
+       }
+       else if ($captcha_success->success==true) {
        $check = $connection -> select("SELECT * FROM qa_users WHERE `handle`=".$name." OR `email`=".$email.";");
        if (count($check) == 0){
         $result = $connection -> query("INSERT INTO `qa_users` (`created`, `email`, `handle`, `passcheck`, `loggedin`) VALUES (".$date.", ".$email.", ".$name.", ".$handle.", ".$date.");");
@@ -72,7 +81,7 @@ if($_GET['type'] == 'login'){
            echo '<script type="text/javascript">
            window.location.href = "/pages/login.php?check=exists";
            </script>';
-     }
+     }}
    }else {
      include 'check.php';
    }
