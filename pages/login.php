@@ -36,7 +36,7 @@ include ("navbar.php");
 			    	    	</label>
 
 			    	    </div>
-                <div class="form-group">
+                <div class="form-group text-center">
                   <div class="g-recaptcha" data-sitekey="6LdZcQ4UAAAAADbwrtSdZRmM67HXTwOg04iU9APq"></div>
                   </div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
