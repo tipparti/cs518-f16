@@ -87,9 +87,9 @@ if($_GET['type'] == 'login'){
           $grav_url =$connection -> quote("https://www.gravatar.com/avatar/".md5($value['email'])."?s=".$size);
           $gravatar = $connection -> query("INSERT INTO `qa_blobs`(`filename`, `userid`, `gravatar`, `created`) VALUES (".$grav_url.",".$_SESSION['userid'].",1,".$date.");");
           $point = $connection -> query("INSERT INTO `qa_userpoints`(`userid`, `points`) VALUES (".$value['userid'].", 100);");
-          // echo '<script type="text/javascript">
-          // window.location.href = "/";
-          // </script>';
+          echo '<script type="text/javascript">
+          window.location.href = "/";
+          </script>';
         }
         }
         }
