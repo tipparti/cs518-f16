@@ -99,6 +99,11 @@
             <img class="img-responsive" src="/img/7.png" alt="...">
 
           </div>
+          <div class="item">
+            <img class="img-responsive" src="/img/8.png" alt="...">
+
+          </div>
+
          </div>
          <!-- Controls -->
          <a class="left carousel-control" href="#carousel-controls" role="button" data-slide="prev">
