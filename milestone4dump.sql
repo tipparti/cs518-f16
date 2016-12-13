@@ -54,7 +54,6 @@ INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `gravatar`, `created`) V
 (21, 'https://www.gravatar.com/avatar/22de2ac897255f7741946283351d661a?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 15, 1, '2016-12-11 22:14:29'),
 (22, 'https://www.gravatar.com/avatar/f71d757df1b7f29a042f7a0e4f5e9317?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 23, 1, '2016-12-12 10:07:31'),
 (23, 'thumb_584f4cdf6159a.jpg', 13, 0, '2016-12-12 20:20:31'),
-(24, 'thumb_584f4d29c191e.png', 2, 0, '2016-12-12 20:21:45'),
 (25, 'thumb_584f4da4c7a7e.png', 14, 0, '2016-12-12 20:23:48'),
 (26, 'thumb_584f4dcf43859.jpg', 9, 0, '2016-12-12 20:24:31'),
 (27, 'thumb_584f4e0282dd8.jpg', 12, 0, '2016-12-12 20:25:22'),
@@ -293,7 +292,7 @@ CREATE TABLE `qa_users` (
 
 INSERT INTO `qa_users` (`userid`, `created`, `email`, `handle`, `avatarblobid`, `avatarwidth`, `avatarheight`, `passcheck`, `loggedin`) VALUES
 (1, '2016-12-11 11:07:24', 'ntipp001@odu.edu', 'admin', 4, NULL, NULL, '4e77c5eed085c1a433a6ddc8bf4130c9', '2016-12-11 11:07:24'),
-(2, '2016-12-11 11:09:33', 'jbrunelle@cs.odu.edu', 'jbrunelle', 24, NULL, NULL, '40e77c0dcd4c2f84b93a340695c4a22c', '2016-12-11 11:09:33'),
+(2, '2016-12-11 11:09:33', 'jbrunelle@cs.odu.edu', 'jbrunelle', NULL, NULL, NULL, '40e77c0dcd4c2f84b93a340695c4a22c', '2016-12-11 11:09:33'),
 (3, '2016-12-11 11:10:57', 'pvenkman@xyz.edu', 'pvenkman', 9, NULL, NULL, '41f05c9bf093ca30867d7f352849fe15', '2016-12-11 11:10:57'),
 (4, '2016-12-11 11:11:53', 'rstantz@odu.edu', 'rstantz', 32, NULL, NULL, '3a6ac1b0a7dc16801e2522454d778f01', '2016-12-11 11:11:53'),
 (5, '2016-12-11 11:12:36', 'dbarrett@xyz.edu', 'dbarrett', 11, NULL, NULL, 'fda14faa279c1123604c06f756c7af14', '2016-12-11 11:12:36'),

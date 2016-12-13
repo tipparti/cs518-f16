@@ -64,21 +64,21 @@ if(!empty($_SESSION['userid'])){?>
                });
            })( window.jQuery, window, document );
         //ID of an element for response output
-        var form_data = new FormData(this); //Creates new FormData object
-        var post_url = $(this).attr("action");
-        $(my_form_id).on( "submit", function(event) {
-           event.preventDefault();
-           $.ajax({
-           type: "POST",
-           url: post_url,
-           data: form_data,
-           cache: false,
-           success: function(result){
-           $("#test").empty();
-           $("#test").append(result);
-           }
-           });
-         });
+        // var form_data = new FormData(this); //Creates new FormData object
+        // var post_url = $(this).attr("action");
+        // $(my_form_id).on( "submit", function(event) {
+        //    event.preventDefault();
+        //    $.ajax({
+        //    type: "POST",
+        //    url: post_url,
+        //    data: form_data,
+        //    cache: false,
+        //    success: function(result){
+        //    $("#test").empty();
+        //    $("#test").append(result);
+        //    }
+        //    });
+        //  });
           </script>
   </div>
   </div>
