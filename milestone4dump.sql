@@ -511,6 +511,6 @@ ALTER TABLE `qa_titlewords`
   --
   -- Constraints for table `qa_posts`
   --
-  ALTER TABLE `qa_posts`
-      ADD FULLTEXT INDEX `IndexName` (`title`)
-      ADD FULLTEXT INDEX `IndexName2` (`content`);
+
+ALTER TABLE `qa_posts`
+  ADD FULLTEXT IndexName(`title`) ADD FULLTEXT IndexName2(`content`);
