@@ -59,7 +59,7 @@ cloud {
 					<div class="tab-pane" id="circle">
             <div class="tab-pane active wordcloud" id="circlecloud">
                 <?php foreach ($result as $key => $value): ?>
-                  <span data-weight="<?php echo $value;?>"><a href="#"> <?php echo $key;?> </a> </span>
+                  <span data-weight="<?php echo $value;?>"><a href="/pages/word.php?word=<?php echo $key;?>"> <?php echo $key;?> </a> </span>
                 <?php endforeach; ?>
   					</div>
 					</div>
@@ -67,7 +67,7 @@ cloud {
 					<div class="tab-pane" id="cross">
             <div class="tab-pane active wordcloud" id="crosscloud">
                 <?php foreach ($result as $key => $value): ?>
-                  <span data-weight="<?php echo $value;?>"><a href="#"> <?php echo $key;?> </a> </span>
+                  <span data-weight="<?php echo $value;?>"><a href="/pages/word.php?word=<?php echo $key;?>"> <?php echo $key;?> </a> </span>
                 <?php endforeach; ?>
   					</div>
 					</div>
