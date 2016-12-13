@@ -292,12 +292,12 @@ Deleting hidden posts<br />
 
               $counts2 = [];
               $counts3 = [];
-              $sql = $connection -> select("SELECT * FROM `qa_posts` WHERE `type` = 'Q' AND `userid`=".$_SESSION['userid'].";");
+              $sql = $connection -> select("SELECT * FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_users`.`userid` = `qa_posts`.`userid`  WHERE `type` = 'Q' AND `handle`=".$handle.";");
               foreach ($sql as $key => $value) {
                 // $wrdcount = $cloud -> wordcount($value['content']);
                 $counts2 = $cloud -> array_merge_recursive_numeric($cloud -> wordcount($value['content']));
               }
-              $sql = $connection -> select("SELECT * FROM `qa_posts` WHERE `type` = 'A' AND `userid`=".$_SESSION['userid'].";");
+              $sql = $connection -> select("SELECT * FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_users`.`userid` = `qa_posts`.`userid` WHERE `type` = 'A' AND `handle`=".$handle.";");
               foreach ($sql as $key => $value) {
                 // $wrdcount = $cloud -> wordcount($value['content']);
                 $counts3 = $cloud -> array_merge_recursive_numeric($cloud -> wordcount($value['content']));
@@ -320,7 +320,23 @@ Deleting hidden posts<br />
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+var config = {
+       "size" : {
+           "grid" : 12,
+           "factor": 45,
+           "normalize": true
+       },
+       "options" : {
+          "color" : "random-dark",
+           "rotationRatio" : 0.5,
+          "printMultiplier" : 3,
+       },
+       "font" : "Pacifico, Helvetica, sans-serif",
+       "shape" : "star"
+   }
+    $( "#starcloud" ).awesomeCloud( config );
+    </script>
 <?php else:
   $users = '';
   $sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created`,`qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` ;");
@@ -339,23 +355,7 @@ Deleting hidden posts<br />
 <?php echo $users;?>
   </div>
 </div>
-<script type="text/javascript">
-var config = {
-       "size" : {
-           "grid" : 12,
-           "factor": 45,
-           "normalize": true
-       },
-       "options" : {
-          "color" : "random-dark",
-           "rotationRatio" : 0.5,
-          "printMultiplier" : 3,
-       },
-       "font" : "Pacifico, Helvetica, sans-serif",
-       "shape" : "star"
-   }
-    $( "#starcloud" ).awesomeCloud( config );
-    </script>
+
 
 <?php endif;
 include 'footer.php';
