@@ -100,7 +100,7 @@ endforeach; ?>
             <?php
 
               $sql = $connection -> select("SELECT `wordid`, `word`, `titlecount`, `contentcount`, `tagwordcount`, `tagcount`, (`contentcount` + `tagwordcount` + `tagcount`) AS `Total` FROM `qa_words` ORDER BY `word` ASC GROUP BY `wordid`");
-             foreach ($sql as $key => $value):
+             foreach ($sql as $key => $value){
                echo "SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'";
               //  $sql1 = $connection -> select("SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'");
               //  $ttl;
@@ -112,7 +112,7 @@ endforeach; ?>
     <span class="badge pull-right">0</span>'.$value['word'].'
     </a>
   </li>';
-             endforeach; ?>
+} ?>
 
               				  			</ul>
       </div>
