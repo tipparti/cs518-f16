@@ -26,11 +26,11 @@ function getimg($url) {
 
 $clientId = "332ee047993e8908ad81";
 $clientSecret = "90f90533343d94fa6bca81bdf8da5402b7219ac7";
-// $redirect_url = 'http://tipparti.cs518.cs.odu.edu/pages/github.php';
-// $ROOTURI = "http://tipparti.cs518.cs.odu.edu/index.php";
-
-$redirect_url = 'http://localhost/pages/github.php';
-$ROOTURI = 'http://localhost/';
+$redirect_url = 'http://tipparti.cs518.cs.odu.edu/pages/github.php';
+$ROOTURI = "http://tipparti.cs518.cs.odu.edu/index.php";
+//
+// $redirect_url = 'http://localhost/pages/github.php';
+// $ROOTURI = 'http://localhost/';
 
 
 //get request , either code from github, or login request
