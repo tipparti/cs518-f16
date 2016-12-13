@@ -10,9 +10,9 @@ $like = $_REQUEST["searchall"];
 
 $query = $connection -> SELECT("SELECT `qa_users`.`userid`, `handle`, `filename`, `gravatar` FROM `qa_users` LEFT JOIN `qa_blobs` ON `qa_users`.`userid` = `qa_blobs`.`userid` WHERE `handle` LIKE '".$like."%' GROUP BY `qa_users`.`userid`");
 
-$sql = $connection -> SELECT("SELECT `postid`, `type`, `title`, `content` FROM `qa_posts` WHERE MATCH(`title`) AGAINST('".$like."') OR MATCH(`content`) AGAINST('".$like."')  GROUP BY `title`");
+$sql = $connection -> SELECT("SELECT `postid`, `type`, `title`, `content` FROM `qa_posts` WHERE `title` LIKE '%".$like."%' OR `content` LIKE '%".$like."%'  GROUP BY `title`");
 
-$tag = $connection -> SELECT("SELECT `word` FROM `qa_words` WHERE `word` LIKE '".$like."%' GROUP BY `word`");
+$tag = $connection -> SELECT("SELECT `word` FROM `qa_words` WHERE `word` LIKE '%".$like."%' GROUP BY `word`");
 
 $str = '';
 

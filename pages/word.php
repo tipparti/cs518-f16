@@ -16,7 +16,6 @@ $connection = new Db();
 if (isset($_GET['word'])):
 
 $tag = $_GET['word'];
-$query = $connection -> select("SELECT `postid`, `userid`, `upvotes`, `downvotes`, `netvotes`, `created`, `title`, `content`, `tags` FROM `qa_posts` WHERE MATCH (`title`) AGAINST('pop') OR  MATCH(`content`) AGAINST('pop') AND `type` = 'Q' GROUP BY `title`");
 
 ?>
 <div class="container">
@@ -35,7 +34,7 @@ $query = $connection -> select("SELECT `postid`, `userid`, `upvotes`, `downvotes
                                   <li class="list-group-item">
 
 <?php
-$red = $connection -> select("SELECT `title`,`content`,`qa_posts`.`created`, `qa_posts`.`postid`, `qa_posts`.`acount`, `qa_users`.`handle`, `netvotes`,`avatarblobid` FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid`  WHERE MATCH (`title`) AGAINST('".$tag."') OR  MATCH(`content`) AGAINST('".$tag."') AND `type` = 'Q' ORDER BY `qa_posts`.`created` DESC;");
+$red = $connection -> select("SELECT `title`,`content`,`qa_posts`.`created`, `qa_posts`.`postid`, `qa_posts`.`acount`, `qa_users`.`handle`, `netvotes`,`avatarblobid` FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid`  WHERE `title` LIKE '%".$tag."%' OR `content` LIKE '%".$tag."%' AND `type` = 'Q' ORDER BY `qa_posts`.`created` DESC;");
 $hrred = (int)count($red);
  foreach ($red as $key => $value):
    $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
