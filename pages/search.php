@@ -40,7 +40,10 @@ if (count($query) == 0 && count($sql) == 0) {
 
   foreach ($sql as $key => $value) {
     $title = html_entity_decode($bbcode->Parse($value['title']));
-    $que = $que.'<a class="dummy-media-object" href="/pages/questions.php?qa='.$value['postid'].'"><h3>'.$title.'</h3></a>';
+    if (!empty($value['title'])) {
+      $que = $que.'<a class="dummy-media-object" href="/pages/questions.php?qa='.$value['parentid'].'"><h3>'.$title.'</h3></a>';
+    }
+    // $que = $que.'<a class="dummy-media-object" href="/pages/questions.php?qa='.$value['postid'].'"><h3>'.$title.'</h3></a>';
   }
 
   foreach ($tag as $key => $value) {
