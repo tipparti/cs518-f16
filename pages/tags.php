@@ -108,7 +108,7 @@ endforeach; ?>
                 }
               echo '<li class="col-md-4">
     <a href="/pages/tags.php?tag='.$value['word'].'" style="background-color: #2C3E50; color:#FFF;">
-    <span class="badge pull-right">$ttl</span>'.$value['word'].'
+    <span class="badge pull-right">'.$ttl.'</span>'.$value['word'].'
     </a>
   </li>';
 } ?>
