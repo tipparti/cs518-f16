@@ -99,7 +99,7 @@ endforeach; ?>
           <ul class="nav nav-pills nav-stacked tag-list">
             <?php
 
-              $sql = $connection -> select("SELECT `wordid`, `word`, `titlecount`, `contentcount`, `tagwordcount`, `tagcount`, (`contentcount` + `tagwordcount` + `tagcount`) AS `Total` FROM `qa_words` GROUP BY `wordid`");
+              $sql = $connection -> select("SELECT `wordid`, `word`, `titlecount`, `contentcount`, `tagwordcount`, `tagcount`, (`contentcount` + `tagwordcount` + `tagcount`) AS `Total` FROM `qa_words` ORDER BY `word` ASC GROUP BY `wordid`");
              foreach ($sql as $key => $value):
                $sql1 = $connection -> select("SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'");
                $ttl;
