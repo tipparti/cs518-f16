@@ -101,6 +101,7 @@ endforeach; ?>
 
               $sql = $connection -> select("SELECT `wordid`, `word`, `titlecount`, `contentcount`, `tagwordcount`, `tagcount`, (`contentcount` + `tagwordcount` + `tagcount`) AS `Total` FROM `qa_words` ORDER BY `word` ASC GROUP BY `wordid`");
              foreach ($sql as $key => $value):
+               echo "SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'";
                $sql1 = $connection -> select("SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'");
                $ttl;
                foreach ($sql1 as $key => $val) {
