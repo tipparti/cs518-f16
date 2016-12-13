@@ -506,11 +506,3 @@ ALTER TABLE `qa_tagwords`
 ALTER TABLE `qa_titlewords`
   ADD CONSTRAINT `qa_titlewords_ibfk_1` FOREIGN KEY (`postid`) REFERENCES `qa_posts` (`postid`) ON DELETE CASCADE,
   ADD CONSTRAINT `qa_titlewords_ibfk_2` FOREIGN KEY (`wordid`) REFERENCES `qa_words` (`wordid`);
-
-
-  --
-  -- Constraints for table `qa_posts`
-  --
-
-ALTER TABLE `qa_posts`
-  ADD FULLTEXT IndexName(`title`) ADD FULLTEXT IndexName2(`content`);
