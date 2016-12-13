@@ -102,14 +102,14 @@ endforeach; ?>
               $sql = $connection -> select("SELECT `wordid`, `word`, `titlecount`, `contentcount`, `tagwordcount`, `tagcount`, (`contentcount` + `tagwordcount` + `tagcount`) AS `Total` FROM `qa_words` ORDER BY `word` ASC GROUP BY `wordid`");
              foreach ($sql as $key => $value):
                echo "SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'";
-               $sql1 = $connection -> select("SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'");
-               $ttl;
-               foreach ($sql1 as $key => $val) {
-                 $ttl = $val['total'];
-                }
+              //  $sql1 = $connection -> select("SELECT count(*) AS `total` FROM `qa_posts` WHERE `title` LIKE '%".$value['word']."%' OR `content` LIKE '%".$value['word']."%'");
+              //  $ttl;
+              //  foreach ($sql1 as $key => $val) {
+              //    $ttl = $val['total'];
+              //   }
               echo '<li class="col-md-4">
     <a href="/pages/tags.php?tag='.$value['word'].'" style="background-color: #2C3E50; color:#FFF;">
-    <span class="badge pull-right">'.$ttl.'</span>'.$value['word'].'
+    <span class="badge pull-right">0</span>'.$value['word'].'
     </a>
   </li>';
              endforeach; ?>
