@@ -80,7 +80,7 @@ if($_GET['type'] == 'login'){
           $_SESSION['name'] = stripslashes($value['handle']);
           $_SESSION['userid'] = $value['userid'];
           $hash = $connection -> quote(md5( strtolower( trim( $value['email'] ) ) ));
-          $grav_url =$connection -> quote("https://www.gravatar.com/avatar/" . md5( strtolower( trim( $value['email']  ) ) ) ."?s=" . $size);
+          $grav_url =$connection -> quote("https://www.gravatar.com/avatar/" . md5( strim( $value['email']  ) ."?s=" . $size);
           $gravatar = $connection -> query("INSERT INTO `qa_blobs`(`filename`, `userid`, `gravatar`, `created`) VALUES (".$grav_url.",".$_SESSION['userid'].",1,".$date.");");
           $point = $connection -> query("INSERT INTO `qa_userpoints`(`userid`, `points`) VALUES (".$value['userid'].", 100);");
           echo '<script type="text/javascript">

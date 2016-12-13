@@ -52,7 +52,6 @@ INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `gravatar`, `created`) V
 (19, 'https://www.gravatar.com/avatar/ae9783e999fff575cd2bfaef5b8aae1c?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 13, 1, '2016-12-11 22:13:26'),
 (20, 'https://www.gravatar.com/avatar/55f1736b72335675508d4452cd62b35b?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 14, 1, '2016-12-11 22:13:50'),
 (21, 'https://www.gravatar.com/avatar/22de2ac897255f7741946283351d661a?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 15, 1, '2016-12-11 22:14:29'),
-(22, 'https://www.gravatar.com/avatar/f71d757df1b7f29a042f7a0e4f5e9317?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 23, 1, '2016-12-12 10:07:31'),
 (23, 'thumb_584f4cdf6159a.jpg', 13, 0, '2016-12-12 20:20:31'),
 (25, 'thumb_584f4da4c7a7e.png', 14, 0, '2016-12-12 20:23:48'),
 (26, 'thumb_584f4dcf43859.jpg', 9, 0, '2016-12-12 20:24:31'),
