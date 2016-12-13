@@ -339,24 +339,24 @@ Deleting hidden posts<br />
 <?php echo $users;?>
   </div>
 </div>
+<script type="text/javascript">
+var config = {
+       "size" : {
+           "grid" : 12,
+           "factor": 45,
+           "normalize": true
+       },
+       "options" : {
+          "color" : "random-dark",
+           "rotationRatio" : 0.5,
+          "printMultiplier" : 3,
+       },
+       "font" : "Pacifico, Helvetica, sans-serif",
+       "shape" : "star"
+   }
+    $( "#starcloud" ).awesomeCloud( config );
+    </script>
+
 <?php endif;
 include 'footer.php';
  ?>
- <script type="text/javascript">
- var config = {
-        "size" : {
-            "grid" : 12,
-            "factor": 45,
-            "normalize": true
-        },
-        "options" : {
-           "color" : "random-dark",
-          	"rotationRatio" : 0.5,
-           "printMultiplier" : 3,
-        },
-        "font" : "Pacifico, Helvetica, sans-serif",
-        "shape" : "star"
-    }
-     $( "#starcloud" ).awesomeCloud( config );
-     </script>
- <script type="text/javascript">
