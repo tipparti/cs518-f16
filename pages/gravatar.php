@@ -15,13 +15,11 @@ $date = $connection -> quote($today);
 $query = $connection -> select("SELECT `userid`, `created`, `email`, `handle`, `avatarblobid` FROM `qa_users` WHERE `userid`=".$_SESSION['userid']);
 $email;
 foreach ($query as $key => $value) {
-  $email = $connection -> quote($value['email']);
+  $email = $value['email'];
 }
 
 if (isset($_POST) && $_POST['type'] == 'gravatar') {
-echo $email;
 
-echo md5( strtolower( trim( $email ) ) );
   // $default = "https://www.gravatar.com/avatar/";
   $size = 200;
   $hash = $connection -> quote(md5( strtolower( trim( $email ) ) ));
@@ -33,9 +31,9 @@ echo md5( strtolower( trim( $email ) ) );
   }
   $get = $connection -> query("UPDATE `qa_users`, (SELECT `blobid`, `userid`,`filename` FROM `qa_blobs`) as table1 SET `avatarblobid`= table1.`blobid` WHERE `qa_users`.`userid`=table1.`userid` AND table1.`filename`=".$grav_url.";");
 
-  // echo '<script type="text/javascript">
-  // window.location.href = "/pages/profile.php";
-  // </script>';
+  echo '<script type="text/javascript">
+  window.location.href = "/pages/profile.php";
+  </script>';
 } elseif (isset($_POST) && $_POST['type'] == 'reset')  {
   $hash = $connection -> quote(md5( strtolower( trim( $email ) ) ));
   $get = $connection -> query("UPDATE `qa_users`, (SELECT `blobid`, `userid`,`filename` FROM `qa_blobs`) as table1 SET `avatarblobid`= table1.`blobid` WHERE `qa_users`.`userid`=table1.`userid` AND table1.`filename`!=".$hash.";");
