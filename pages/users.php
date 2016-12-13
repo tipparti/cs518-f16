@@ -1,10 +1,14 @@
 <?php
-session_start();
 include ("header.php");
 include ("navbar.php");
-include_once '../db/db.php';
-include '../app/time.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/db/db.php';
+include $_SERVER['DOCUMENT_ROOT'].'/app/time.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/cloud.php';
 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 date_default_timezone_set('America/New_York');
 
 
@@ -12,9 +16,13 @@ $config["upload_url"] = 'http://localhost:8888/img/uploads/';
 
 
 $connection = new Db();
+$bbcode = new BBCode;
+$cloud = new WordCloud();
+
+
 $handle = $connection -> quote($_GET['handle']);
 
-$sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created`,`qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_users`.`handle`=".$handle.";");
+$sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created`,`qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_users`.`handle`=".$handle.";");
 $created;
 $points = $connection -> select("SELECT * FROM `qa_userpoints` INNER JOIN `qa_users` ON `qa_users`.`userid` = `qa_userpoints`.`userid` WHERE `handle`=".$handle." ORDER BY `points` DESC;");
 $totalpoints;
@@ -34,6 +42,9 @@ foreach ($points as $key => $value) {
   $downvoteds = $value['downvoteds'];
 }
 ?>
+<?php if (isset($_GET['handle'])): ?>
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -45,14 +56,18 @@ foreach ($points as $key => $value) {
     <div class="row clearfix well">
 		<div class="col-md-2 column">
       <?php
-      $created;
       foreach ($sql as $key => $value) {
         $created = $value['created'];
-        echo '<img src="'.$config["upload_url"].$value['filename'].'" class="img-thumbnail" title="'.$value['filename'].'" />';
+        if ($value['gravatar'] == 0) {
+          $pic =	"<img src='/img/uploads/".$value['filename']."' class='img-thumbnail' title='".$value['handle']."'/>";
+        } else {
+          $pic =	"<img src='".$value['filename']."' class='img-thumbnail' style='width:158px;height:158px;' title='".$value['handle']."'/>";
+        }
+        echo $pic;
 
       }
-       header("Location: /pages/profile.php");
     ?>
+
 
         <div id="output"><!-- error or success results --></div>
 		</div>
@@ -83,6 +98,9 @@ foreach ($points as $key => $value) {
           <li>
 						<a href="#panel-5676450" data-toggle="tab">All Answers</a>
 					</li>
+          <li>
+            <a href="#starcloud" data-toggle="tab"><i class="fa fa-star-o" aria-hidden="true"></i> Star</a></a>
+          </li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-200304">
@@ -175,6 +193,8 @@ Deleting hidden posts<br />
             				</div>
             			</div>
 					</div>
+
+
           <div class="tab-pane" id="panel-567647">
             <div class="row">
               <div class="panel-body">
@@ -186,10 +206,20 @@ Deleting hidden posts<br />
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <?php $all = $connection -> select("SELECT *,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `qa_users`.`handle`='".$_GET['handle']."' ORDER BY `qa_posts`.`created` DESC;");
+                                  <?php $all = $connection -> select("SELECT *,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `handle`=".$handle." ORDER BY `qa_posts`.`created` DESC;");
                                    foreach ($all as $key => $value) {?>
                                      <tr>
-                                       <td><a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
+                                       <td><a href="/pages/questions.php?qa=<?php
+                                       if ($value['type'] == 'A') {
+                                          echo $value['parentid'];
+                                       }else {
+                                       echo $value['postid'];}
+                                       ?>"><?php
+
+                                       if ($value['title'] == NULL) {
+                                        echo html_entity_decode($bbcode->Parse($value['content']));
+                                       }else{
+                                       echo html_entity_decode($bbcode->Parse($value['title']));} ?>
                                                    </a></td>
                                                    <td><?php echo $value['netvotes']; ?></td>
                                                  </tr>
@@ -198,9 +228,9 @@ Deleting hidden posts<br />
                                 </tbody>
                               </table>
 
-		</div>
-	</div>
-					</div>
+    </div>
+  </div>
+          </div>
           <div class="tab-pane" id="panel-567649">
             <div class="row">
               <div class="panel-body">
@@ -212,7 +242,7 @@ Deleting hidden posts<br />
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <?php $all = $connection -> select("SELECT * ,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `qa_users`.`handle`='".$_GET['handle']."' AND `type`= 'Q' ORDER BY `qa_posts`.`created` DESC;");
+                                  <?php $all = $connection -> select("SELECT * ,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `handle`=".$handle." AND `type`= 'Q' ORDER BY `qa_posts`.`created` DESC;");
                                    foreach ($all as $key => $value) {?>
                                      <tr>
                                        <td><a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
@@ -227,7 +257,7 @@ Deleting hidden posts<br />
     </div>
   </div>
           </div>
-          <div class="tab-pane" id="panel-567650">
+          <div class="tab-pane" id="panel-5676450">
             <div class="row">
               <div class="panel-body">
                       <table class="table table-striped table-hover">
@@ -238,10 +268,10 @@ Deleting hidden posts<br />
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <?php $all = $connection -> select("SELECT *,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `type`='A' AND `qa_users`.`handle`='".$_GET['handle']."' ORDER BY `qa_posts`.`created` DESC;");
+                                  <?php $all = $connection -> select("SELECT *,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `type`='A' AND `handle`=".$handle." ORDER BY `qa_posts`.`created` DESC;");
                                    foreach ($all as $key => $value) {?>
                                      <tr>
-                                       <td><a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['content'])); ?>
+                                       <td><a href="/pages/questions.php?qa=<?php echo $value['parentid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['content'])); ?>
                                                    </a></td>
                                                    <td><?php echo $value['netvotes'];  ?></td>
                                                  </tr>
@@ -252,6 +282,35 @@ Deleting hidden posts<br />
 
     </div>
   </div>
+          </div>
+
+          <div class="tab-pane wordcloud" id="starcloud">
+              <?php
+              $sql = $connection -> select("SELECT count(`userid`) AS count FROM `qa_users`;");
+              $count;
+              foreach ($sql as $key => $value) {
+                $count = $value['count'];
+              }
+
+              $counts2 = [];
+              $counts3 = [];
+              $sql = $connection -> select("SELECT * FROM `qa_posts` WHERE `type` = 'Q' AND `userid`=".$_SESSION['userid'].";");
+              foreach ($sql as $key => $value) {
+                // $wrdcount = $cloud -> wordcount($value['content']);
+                $counts2 = $cloud -> array_merge_recursive_numeric($cloud -> wordcount($value['content']));
+              }
+              $sql = $connection -> select("SELECT * FROM `qa_posts` WHERE `type` = 'A' AND `userid`=".$_SESSION['userid'].";");
+              foreach ($sql as $key => $value) {
+                // $wrdcount = $cloud -> wordcount($value['content']);
+                $counts3 = $cloud -> array_merge_recursive_numeric($cloud -> wordcount($value['content']));
+              }
+
+              $result = array_merge($counts2, $counts3);
+              $cld = $cloud -> cleanup_wordcounts($result);
+              foreach ($result as $key => $value){ ?>
+                <span data-weight="<?php echo $value;?>"><a href="/pages/word.php?word=<?php echo $key;?>"> <?php echo $key;?> </a> </span>
+              <?php } ?>
+					</div>
           </div>
 
   </div>
@@ -264,6 +323,42 @@ Deleting hidden posts<br />
 	</div>
 </div>
 
-<?php
+<?php else:
+  $users = '';
+  $sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created`,`qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` ;");
+  foreach ($sql as $key => $value) {
+    $created = $value['created'];
+    if ($value['gravatar'] == 0) {
+      $pic =	"<img src='/img/uploads/".$value['filename']."' class='glyphicon btn-glyphicon img-circle' style='width:36px;height:36px;' title='".$value['handle']."'/>";
+    } else {
+      $pic =	"<img src='".$value['filename']."' class='glyphicon btn-glyphicon img-circle' style='width:36px;height:36px;' title='".$value['handle']."'/>";
+    }
+    $users = $users.'<a class="btn icon-btn btn-info" href="/pages/users.php?handle='.$value['handle'].'" style="margin-bottom:12px;">'.$pic.$value['handle'].'</a>&nbsp;&nbsp;';
+  }
+  ?>
+<div class="container">
+  <div class="row">
+<?php echo $users;?>
+  </div>
+</div>
+<?php endif;
 include 'footer.php';
  ?>
+ <script type="text/javascript">
+ var config = {
+        "size" : {
+            "grid" : 12,
+            "factor": 45,
+            "normalize": true
+        },
+        "options" : {
+           "color" : "random-dark",
+          	"rotationRatio" : 0.5,
+           "printMultiplier" : 3,
+        },
+        "font" : "Pacifico, Helvetica, sans-serif",
+        "shape" : "star"
+    }
+     $( "#starcloud" ).awesomeCloud( config );
+     </script>
+ <script type="text/javascript">

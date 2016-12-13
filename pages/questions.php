@@ -126,9 +126,19 @@ foreach ($result as $key => $value) {
       </div>
       <div class="col-md-10">
         <h2><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?></h2>
-        <?php echo str_replace('pre', 'p', html_entity_decode($bbcode->Parse($value['content']))); ?>
+        <?php echo str_replace('pre', 'p', html_entity_decode($bbcode->Parse($value['content'])));
+
+        $avatar = $connection -> SELECT("SELECT `blobid`, `filename`, `qa_users`.`userid`, `gravatar`,`handle` FROM `qa_blobs` LEFT JOIN `qa_users` ON `blobid`= `avatarblobid` WHERE `handle` = '".$value['handle']."' GROUP BY `qa_users`.`userid`");
+        foreach ($avatar as $key => $ava) {
+          if ($ava['gravatar'] == 0) {
+            $qpic =	"<img src='/img/uploads/".$ava['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$ava['handle']."'/>";
+          } else {
+            $qpic =	"<img src='".$ava['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$ava['handle']."'/>";
+          }
+        }
+        ?>
         <div>
-      <span class="">asked <?php echo  time_elapsed_string($value['created']); echo " by  <a href='#'>".$value['handle']."</a>"; ?> </span><div class="pull-right form-inline">
+      <span class="">asked <?php echo  time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$value['handle']."'>".$qpic."&nbsp;".$value['handle']."</a>"; ?> </span><div class="pull-right form-inline">
         <form class="freeze" action="/app/admin.php" id="freeze" method="post">
           <?php if($value['flagcount'] == 0){ ?>
             <a class="btn btn-sm btn-info col-md-pull-6 freeze" id="btnAnswer" onclick="$('#target').toggleClass('hidden');">Post Answer</a>
@@ -146,7 +156,7 @@ foreach ($result as $key => $value) {
         <div class="col-md-10 col-md-push-1">
           <div class="panel panel-primary">
       <div class="panel-heading"><?php if( $value['acount'] != 0){  echo $value['acount']." Answers"; ?></div> </div><?php
-        $answer = $connection -> select("SELECT `title`,`content`,`qa_posts`.`created`, `postid`, `netvotes`, `qa_users`.`handle` FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_posts`.`userid` =  `qa_users`.`userid`  WHERE `parentid`=".$postid." AND `type`='A' ORDER BY `created` DESC $limit;");
+        $answer = $connection -> select("SELECT `title`,`content`,`qa_posts`.`created`, `postid`, `netvotes`, `qa_users`.`handle`,`flagged` FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_posts`.`userid` =  `qa_users`.`userid`  WHERE `parentid`=".$postid." AND `type`='A' ORDER BY `flagged` DESC,`created` DESC $limit;");
         $aclass = $connection -> select("SELECT `vote`, `qa_uservotes`.`postid` FROM `qa_uservotes` JOIN `qa_posts` ON `qa_posts`.`postid` = `qa_uservotes`.`postid` WHERE `qa_uservotes`.`userid`=".$_SESSION['userid'].";");
         $valaclass = (int)count($aclass);
         $aid;
@@ -182,7 +192,7 @@ foreach ($result as $key => $value) {
                   echo $aupdateClass;
                   ?>" id="<?php echo "a_upvote".$val['postid']; ?>" href='javascript:{}'
                   onclick="<?php
-                      $retVal = ($_SESSION['name'] == $value['handle']) ? "ShowAlert();" : "document.getElementById('a_upvote".$val['postid']."').submit();" ;
+                      $retVal = ($_SESSION['name'] == $val['handle']) ? "ShowAlert();" : "document.getElementById('a_upvote".$val['postid']."').submit();" ;
                       echo $retVal;
                      ?>"
                     >
@@ -197,17 +207,37 @@ foreach ($result as $key => $value) {
 
                     <a href="javascript:{}" class="<?php echo $aupdateClass;?>"
                       onclick="<?php
-                          $retVal = ($_SESSION['name'] == $value['handle']) ? "ShowAlert();" : "document.getElementById('a_dnvote".$val['postid']."').submit();" ;
+                          $retVal = ($_SESSION['name'] == $val['handle']) ? "ShowAlert();" : "document.getElementById('a_dnvote".$val['postid']."').submit();" ;
                           echo $retVal;
                          ?>
                       "><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a></div></form></div>
             <div class="col-md-1 text-center">
-              <i class="fa fa-check fa-2x text-center" aria-hidden="true"></i>
+              <form class="best" id="bestans<?php echo $val['postid'];?>" action="/pages/select.php" method="post">
+                <div class="text-center choose">
+                  <input type="hidden" name="qa" id="qa" value="<?php echo $_GET['qa'];?>"/>
+                  <input type="hidden" name="ans_id" id="ans_id" value="<?php echo $val['postid'];?>"/>
+                  <?php
+                  $bstclass = ($val['flagged'] == 1) ? "flagged flagged-enabled" : "flagged" ;
+                  $onclk = ($_SESSION['name'] == $val['handle']) ? "ShowBestAlert();" : "document.getElementById('bestans".$val['postid']."').submit();"  ;
+                  ?>
+                  <a href="javascript:{}" class="<?php echo $bstclass;?>" onclick="<?php echo $onclk;?>"><i class="fa fa-check fa-2x text-center" aria-hidden="true"></i>
+  </a>
+                </div>
+              </form>
             </div>
             <div class="col-md-10">
-             <?php echo str_replace('pre', 'p', html_entity_decode($bbcode->Parse($val['content'])));?>
+             <?php echo str_replace('pre', 'p', html_entity_decode($bbcode->Parse($val['content'])));
+             $avatar = $connection -> SELECT("SELECT `blobid`, `filename`, `qa_users`.`userid`, `gravatar`,`handle` FROM `qa_blobs` LEFT JOIN `qa_users` ON `blobid`= `avatarblobid` WHERE `handle` = '".$val['handle']."' GROUP BY `qa_users`.`userid`");
+             foreach ($avatar as $key => $value) {
+               if ($value['gravatar'] == 0) {
+                 $pic =	"<img src='/img/uploads/".$value['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$value['handle']."'/>";
+               } else {
+                 $pic =	"<img src='".$value['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$value['handle']."'/>";
+               }
+             }
+             ?>
 
-              <span class="">answered <?php echo  time_elapsed_string($val['created']); echo " by  <a href='#'>".$val['handle']."</a>"; ?> </span>
+              <span class="">answered <?php echo  time_elapsed_string($val['created']); echo " by  <a href='/pages/users.php?handle=".$val['handle']."'>".$pic."&nbsp;".$val['handle']."</a>"; ?> </span>
                 <hr />
             </div>
 
@@ -250,6 +280,11 @@ foreach ($result as $key => $value) {
               document.getElementById(result_error).removeClass("hidden");
               document.getElementById(result_error).append("You can't <strong>vote</strong> on your post");
               document.getElementById(result_error).fadeOut(1800);
+        }
+        function ShowBestAlert(){
+           document.getElementById(result_error).removeClass("hidden");
+           document.getElementById(result_error).append("You can't <strong>choose</strong> your post as Best Answer");
+           document.getElementById(result_error).fadeOut(1800);
         }
         $(my_form_id).on( "submit", function(event) {
 

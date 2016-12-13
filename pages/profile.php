@@ -5,6 +5,8 @@ include ("navbar.php");
 include_once $_SERVER['DOCUMENT_ROOT'].'/db/db.php';
 include $_SERVER['DOCUMENT_ROOT'].'/app/time.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/cloud.php';
+
 
 date_default_timezone_set('America/New_York');
 
@@ -13,8 +15,10 @@ $config["upload_url"] = '/img/uploads/';
 
 $connection = new Db();
 $bbcode = new BBCode;
+$cloud = new WordCloud();
 
-$sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_users`.`userid`=".$_SESSION['userid'].";");
+
+$sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_users`.`userid`=".$_SESSION['userid'].";");
 $created;
 
 $points = $connection -> select("SELECT * FROM `qa_userpoints` WHERE `userid`=".$_SESSION['userid']." ORDER BY `points` DESC;");
@@ -44,14 +48,24 @@ foreach ($points as $key => $value) {
     </div>
   </div>
     <div class="row clearfix well">
-		<div class="col-md-2 column">
+		<div class="col-md-2 column" id="imagediv">
       <?php
       $created;
-      foreach ($sql as $key => $value) {
-        $created = $value['created'];
-        echo '<img src="'.$config["upload_url"].$value['filename'].'" class="img-thumbnail" title="'.$value['filename'].'" />';
+      $gravatar;
+        foreach ($sql as $key => $value) {
+          $created = $value['created'];
+          $gravatar = $value['gravatar'];
+          if ($gravatar == 0) {
+            echo '<img src="'.$config["upload_url"].$value['filename'].'" class="img-thumbnail" title="'.$_SESSION['name'].'" />';
+          } else {
+            echo '<img src="'.$value['filename'].'" class="img-thumbnail" title="'.$_SESSION['name'].'" style="width:158px;height:158px;" />';
+          }
 
-      }
+        }
+
+
+
+
       //  header("Location: /pages/profile.php");
     ?>
 
@@ -70,6 +84,16 @@ foreach ($points as $key => $value) {
    </div>
    <input type="submit" class="btn btn-sm btn-primary" name="__submit__" value="Upload files"/>
  </div>
+      </form>
+      <form action="gravatar.php" method="post" enctype="multipart/form-data" id="gravatar_form">
+        <?php if ($gravatar == 0): ?>
+          <input type="hidden" name="type" value="gravatar">
+          <input type="submit" class="btn btn-sm btn-primary" name="__submit__"/ value="Gravatar">
+          <!-- <img src="../img/Logo_Gravatar.png" alt="" style="height:20px;width:80px;"/> -->
+        <?php else: ?>
+          <input type="hidden" name="type" value="reset">
+          <input type="submit" class="btn btn-sm btn-danger pull-right" name="__submit__" value="Reset"/>
+        <?php endif; ?>
       </form>
 		</div>
 	</div>
@@ -91,6 +115,9 @@ foreach ($points as $key => $value) {
 					</li>
           <li>
 						<a href="#panel-567649" data-toggle="tab">All Answers</a>
+					</li>
+          <li>
+						<a href="#starcloud" data-toggle="tab"><i class="fa fa-star-o" aria-hidden="true"></i> Star</a></a>
 					</li>
           <?php
             if ($_SESSION['name'] == 'admin') {?>
@@ -203,7 +230,17 @@ Deleting hidden posts<br />
                                   <?php $all = $connection -> select("SELECT *,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `handle`='".$_SESSION['name']."' ORDER BY `qa_posts`.`created` DESC;");
                                    foreach ($all as $key => $value) {?>
                                      <tr>
-                                       <td><a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
+                                       <td><a href="/pages/questions.php?qa=<?php
+                                       if ($value['type'] == 'A') {
+                                          echo $value['parentid'];
+                                       }else {
+                                       echo $value['postid'];}
+                                       ?>"><?php
+
+                                       if ($value['title'] == NULL) {
+                                        echo html_entity_decode($bbcode->Parse($value['content']));
+                                       }else{
+                                       echo html_entity_decode($bbcode->Parse($value['title']));} ?>
                                                    </a></td>
                                                    <td><?php echo $value['netvotes']; ?></td>
                                                  </tr>
@@ -255,7 +292,7 @@ Deleting hidden posts<br />
                                   <?php $all = $connection -> select("SELECT *,`qa_posts`.`created` as pdate FROM `qa_posts` INNER JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid` WHERE `type`='A' AND `handle`='".$_SESSION['name']."' ORDER BY `qa_posts`.`created` DESC;");
                                    foreach ($all as $key => $value) {?>
                                      <tr>
-                                       <td><a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['content'])); ?>
+                                       <td><a href="/pages/questions.php?qa=<?php echo $value['parentid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['content'])); ?>
                                                    </a></td>
                                                    <td><?php echo $value['netvotes'];  ?></td>
                                                  </tr>
@@ -266,6 +303,33 @@ Deleting hidden posts<br />
 
 		</div>
 	</div>
+					</div>
+          <div class="tab-pane wordcloud" id="starcloud">
+              <?php
+              $sql = $connection -> select("SELECT count(`userid`) AS count FROM `qa_users`;");
+              $count;
+              foreach ($sql as $key => $value) {
+                $count = $value['count'];
+              }
+
+              $counts2 = [];
+              $counts3 = [];
+              $sql = $connection -> select("SELECT * FROM `qa_posts` WHERE `type` = 'Q' AND `userid`=".$_SESSION['userid'].";");
+              foreach ($sql as $key => $value) {
+                // $wrdcount = $cloud -> wordcount($value['content']);
+                $counts2 = $cloud -> array_merge_recursive_numeric($cloud -> wordcount($value['content']));
+              }
+              $sql = $connection -> select("SELECT * FROM `qa_posts` WHERE `type` = 'A' AND `userid`=".$_SESSION['userid'].";");
+              foreach ($sql as $key => $value) {
+                // $wrdcount = $cloud -> wordcount($value['content']);
+                $counts3 = $cloud -> array_merge_recursive_numeric($cloud -> wordcount($value['content']));
+              }
+
+              $result = array_merge($counts2, $counts3);
+              $cld = $cloud -> cleanup_wordcounts($result);
+              foreach ($result as $key => $value){ ?>
+                <span data-weight="<?php echo $value;?>"><a href="/pages/word.php?word=<?php echo $key;?>"> <?php echo $key;?> </a> </span>
+              <?php } ?>
 					</div>
           <div class="tab-pane" id="panel-567650">
 						                 <div class="row">
@@ -327,6 +391,41 @@ Deleting hidden posts<br />
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+var config = {
+       "size" : {
+           "grid" : 12,
+           "factor": 45,
+           "normalize": true
+       },
+       "options" : {
+          "color" : "random-dark",
+         	"rotationRatio" : 0.5,
+          "printMultiplier" : 3,
+       },
+       "font" : "Pacifico, Helvetica, sans-serif",
+       "shape" : "star"
+   }
+    $( "#starcloud" ).awesomeCloud( config );
+    </script>
+<script type="text/javascript">
+var form = $('#ajax-contact');
+var form_data_g = $(form).serialize(); //Creates new FormData object
+var post_url_g = $(this).attr("action");
+$(form).on(function(event) {
+    // Stop the browser from submitting the form.
+    event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: post_url_g,
+        data: form_data_g
+    }).done(function(response) {
+      $('#imagediv').emtpy();
+      $('#imagediv').append(response);
+    });
+  });
+
+</script>
 <script type="text/javascript">
 //configuration
 var max_file_size 		= 2048576; //allowed file size. (1 MB = 1048576)
@@ -408,7 +507,9 @@ $(my_form_id).on( "submit", function(event) {
 	});
 
 });
+
 </script>
+
 
 <?php
 include 'footer.php';

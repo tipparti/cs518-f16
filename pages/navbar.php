@@ -18,6 +18,7 @@
         <li><a href="/pages/tags.php">Tags</a></li>
         <li><a href="/pages/users.php">Users</a></li>
         <li><a href="/pages/ask.php">Ask a Question</a></li>
+        <li><a href="/pages/words.php">WordCloud</a></li>
         <li><a data-toggle="modal" data-target=".firstModal">Help?</a></li>
       </ul>
 
@@ -47,47 +48,6 @@
     }
     ?>
 
-    <!--   <div class="nav navbar-nav pull-right" style="padding-top:8px;">
-      <div class="input-group">
-          <div class="input-group-btn search-panel">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span id="search_concept"><i class="fa fa-database" aria-hidden="true"></i></span> <span class="caret"></span>
-              </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li class="text-center"><a href="#users"><i class="fa fa-users" aria-hidden="true"></i></a></li>
-                  <li><a href="#tags" ><i class="fa fa-tags" aria-hidden="true"></i></a></li>
-                  <li class="divider"></li>
-                  <li><a href="#all"><i class="fa fa-database" aria-hidden="true"></i></a></li>
-                </ul>
-
-          </div>
-          <input type="hidden" name="search_param" value="all" id="search_param">
-          <input type="text" class="form-control" name="x" id="x" placeholder="Search Q&amp;A">
-
-          <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-
-      </div> -->
-      <!-- <div class="input-group">
-                            <input type="hidden" name="search_param" value="name" id="search_param">
-                            <input id="searchText"type="text" class="form-control" name="q" placeholder="Search Friends" id="search_key" value="">
-                            <span class="input-group-btn">
-                                <a  id="x" class="btn btn-default hide" href="#" title="Clear"><i class="glyphicon glyphicon-remove"></i> </a>
-                                <button class="btn btn-info" type="submit">  Search  </button>
-                            </span>
-                        </div>
-                        <ul id="autolist" class="list-group">
-                                         <div id="autocompleteTest">
-
-
-                                         </div>
-                                     </ul>
-
-
-
-
-    </div> -->
     <div id="morphsearch" class="morphsearch">
 				<form class="morphsearch-form" action="/pages/search.php" method="post">
 					<input class="morphsearch-input" type="search" name="searchall" id="searchall" onKeyUp="showHint(this.value)" placeholder="Search..."/>

@@ -19,6 +19,8 @@ date_default_timezone_set('America/New_York');
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link href="/css/tag-basic-style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
     <title>Q&amp;A</title>
 
     <!-- Bootstrap core CSS -->
@@ -35,6 +37,7 @@ date_default_timezone_set('America/New_York');
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="//cdn.ckeditor.com/4.6.0/full-all/ckeditor.js"></script>
 <script src='https://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit' async defer></script>
+<script src="/js/jquery.awesomeCloud-0.2.js"></script>
 
 
 

@@ -5,22 +5,23 @@ include_once ($_SERVER['DOCUMENT_ROOT']."/db/db.php");
 include $_SERVER['DOCUMENT_ROOT'].'/app/time.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/nbbc/nbbc.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 $bbcode = new BBCode;
 
 $connection = new Db();
 
-if (isset($_GET['tag'])):
+if (isset($_GET['word'])):
 
-$tag = $_GET['tag'];
-$query = $connection -> select("SELECT `postid`, `userid`, `upvotes`, `downvotes`, `netvotes`, `created`, `title`, `content`, `tags` FROM `qa_posts` WHERE `type`='Q' AND `tags` LIKE '%".$tag."%'");
+$tag = $_GET['word'];
+$query = $connection -> select("SELECT `postid`, `userid`, `upvotes`, `downvotes`, `netvotes`, `created`, `title`, `content`, `tags` FROM `qa_posts` WHERE MATCH (`title`) AGAINST('pop') OR  MATCH(`content`) AGAINST('pop') AND `type` = 'Q' GROUP BY `title`");
+
 ?>
 <div class="container">
   <div id="content">
-    <h1>Tagged Questions  </h1><blockquote>
+    <h1>Word Questions  </h1><blockquote>
       <em> <?php echo $tag; ?></em>
     </blockquote>
       <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
@@ -34,7 +35,7 @@ $query = $connection -> select("SELECT `postid`, `userid`, `upvotes`, `downvotes
                                   <li class="list-group-item">
 
 <?php
-$red = $connection -> select("SELECT `title`,`content`,`qa_posts`.`created`, `qa_posts`.`postid`, `qa_posts`.`acount`, `qa_users`.`handle`, `netvotes`,`avatarblobid` FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid`  WHERE `type`='Q' AND `tags` LIKE '%".$tag."%' ORDER BY `qa_posts`.`created` DESC;");
+$red = $connection -> select("SELECT `title`,`content`,`qa_posts`.`created`, `qa_posts`.`postid`, `qa_posts`.`acount`, `qa_users`.`handle`, `netvotes`,`avatarblobid` FROM `qa_posts` LEFT JOIN `qa_users` ON `qa_posts`.`userid` = `qa_users`.`userid`  WHERE MATCH (`title`) AGAINST('".$tag."') OR  MATCH(`content`) AGAINST('".$tag."') AND `type` = 'Q' ORDER BY `qa_posts`.`created` DESC;");
 $hrred = (int)count($red);
  foreach ($red as $key => $value):
    $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");

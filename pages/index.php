@@ -91,15 +91,18 @@ if($last != 1){
                       <?php
 
                        foreach ($red as $key => $value) {
-												 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
+												 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
 												 if(count($profile) == 1){
 												 foreach ($profile as $key => $val){
- 												 	$pic = $val['filename'];
 													$na = $val['handle'];
+													if ($val['gravatar'] == 0) {
+														$pic =	"<img src='/img/uploads/".$val['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$val['handle']."'/>";
+													} else {
+														$pic =	"<img src='".$val['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$val['handle']."'/>";
 													}
-											 }else{
-													 $pic = "58324d75bb23f.jpg";
-												 }
+
+													}
+											 }
 
 												 ?>
 
@@ -118,16 +121,16 @@ if($last != 1){
 																				<?php
 																				$tags = $connection -> select("SELECT `qa_tagwords`.`postid`, `qa_tagwords`.`wordid`, `word` FROM `qa_tagwords` INNER JOIN `qa_words` ON `qa_words`.`wordid` = `qa_tagwords`.`wordid` WHERE `qa_tagwords`.`postid` = ".$value['postid'].";");
 																				foreach ($tags as $key => $tagv) {
-																					echo '<a href="/pages/tags.php?tag='.$tagv['word'].'" class="btn btn-labeled btn-xs" title="Edit">
+																					echo '<a href="/pages/tags.php?tag='.$tagv['word'].'" class="btn btn-labeled btn-xs" title="'.$tagv['word'].'">
 																							<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;'.$tagv['word'].'
 																					</a>&nbsp;&nbsp;';
 																					}
 																				 ?>
 
 																				</div>
-                                    <div class="mic-info form-inline">
-                                        asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
-                                    </div>
+                                    <div class="footer content">
+                                     asked <?php echo time_elapsed_string($value['created']); echo " by <a href='/pages/users.php?handle=".$value['handle']."'>".$pic."&nbsp;".$value['handle']."</a>"; ?>
+                                   </div>
                                 </div>
 
                             </div>
@@ -158,16 +161,22 @@ if($last != 1){
 							<ul class="list-group">
 									<li class="list-group-item">
 										<?php
-										 foreach ($blue as $key => $value) { $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
-										 if(count($profile) == 1){
-										 foreach ($profile as $key => $val){
-											$pic = $val['filename'];
-											$na = $val['handle'];
-											}
-									 }else{
-											 $pic = "58324d75bb23f.jpg";
+
+										 foreach ($blue as $key => $value) {
+											 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
+											 if(count($profile) == 1){
+											 foreach ($profile as $key => $val){
+												$na = $val['handle'];
+												if ($val['gravatar'] == 0) {
+													$pic =	"<img src='/img/uploads/".$val['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$val['handle']."'/>";
+												} else {
+													$pic =	"<img src='".$val['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$val['handle']."'/>";
+												}
+
+												}
 										 }
-?>
+
+											 ?>
 
 											<div class="row">
 												<div class="col-xs-2 col-md-1">
@@ -177,24 +186,25 @@ if($last != 1){
 														<div class="text-center"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><!--i class="fa fa-thumbs-o-down" aria-hidden="true"></i--></div>
 													</div>
 													<div class="col-xs-10 col-md-11">
-															<div>
+															<div class="col-xs-10 col-md-11">
 																	<a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
 																			</a>
-																	<div class="mic-info">
-																		asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
-																	</div>
+																			<div class="action">
+																			<?php
+																			$tags = $connection -> select("SELECT `qa_tagwords`.`postid`, `qa_tagwords`.`wordid`, `word` FROM `qa_tagwords` INNER JOIN `qa_words` ON `qa_words`.`wordid` = `qa_tagwords`.`wordid` WHERE `qa_tagwords`.`postid` = ".$value['postid'].";");
+																			foreach ($tags as $key => $tagv) {
+																				echo '<a href="/pages/tags.php?tag='.$tagv['word'].'" class="btn btn-labeled btn-xs" title="'.$tagv['word'].'">
+																						<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;'.$tagv['word'].'
+																				</a>&nbsp;&nbsp;';
+																				}
+																			 ?>
+
+																			</div>
+																	<div class="footer content">
+																	 asked <?php echo time_elapsed_string($value['created']); echo " by <a href='/pages/users.php?handle=".$value['handle']."'>".$pic."&nbsp;".$value['handle']."</a>"; ?>
+																 </div>
 															</div>
-															<!-- <div class="action">
-																	<button type="button" class="btn btn-primary btn-xs" title="Edit">
-																			<span class="glyphicon glyphicon-pencil"></span>
-																	</button>
-																	<button type="button" class="btn btn-success btn-xs" title="Approved">
-																			<span class="glyphicon glyphicon-ok"></span>
-																	</button>
-																	<button type="button" class="btn btn-danger btn-xs" title="Delete">
-																			<span class="glyphicon glyphicon-trash"></span>
-																	</button>
-															</div> -->
+
 													</div>
 											</div>
 											<?php
@@ -221,44 +231,50 @@ if($last != 1){
 							<ul class="list-group">
 									<li class="list-group-item">
 										<?php
+
 										 foreach ($yellow as $key => $value) {
-											 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
-										 if(count($profile) == 1){
-										 foreach ($profile as $key => $val){
-											$pic = $val['filename'];
-											$na = $val['handle'];
-											}
-									 }else{
-											 $pic = "58324d75bb23f.jpg";
+											 $profile = $connection -> select("SELECT `filename`, `qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_blobs`.blobid=".$value['avatarblobid'].";");
+											 if(count($profile) == 1){
+											 foreach ($profile as $key => $val){
+												$na = $val['handle'];
+												if ($val['gravatar'] == 0) {
+													$pic =	"<img src='/img/uploads/".$val['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$val['handle']."'/>";
+												} else {
+													$pic =	"<img src='".$val['filename']."' class='img-circle' style='width:24px;height:24px;' title='".$val['handle']."'/>";
+												}
+
+												}
 										 }
-?>
+
+											 ?>
 
 											<div class="row">
 												<div class="col-xs-2 col-md-1">
 														<div class="text-center fa-2x"><?php  echo $value['netvotes']; ?>
 														</div>
 														<div class="text-center">Votes</div>
-														<div class="text-center"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><!--!i class="fa fa-thumbs-o-down" aria-hidden="true"></i--></div>
+														<div class="text-center"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><!--i class="fa fa-thumbs-o-down" aria-hidden="true"></i--></div>
 													</div>
 													<div class="col-xs-10 col-md-11">
-															<div>
+															<div class="col-xs-10 col-md-11">
 																	<a href="/pages/questions.php?qa=<?php echo $value['postid']; ?>"><?php echo html_entity_decode($bbcode->Parse($value['title'])); ?>
 																			</a>
-																	<div class="mic-info">
-																		asked <?php echo time_elapsed_string($value['created']); echo " by  <a href='/pages/users.php?handle=".$na."'><img src='/img/uploads/".$pic."' class='img-responsive img-circle' style='width:24px;height:24px;' />".$value['handle']."</a>"; ?>
-																	</div>
+																			<div class="action">
+																			<?php
+																			$tags = $connection -> select("SELECT `qa_tagwords`.`postid`, `qa_tagwords`.`wordid`, `word` FROM `qa_tagwords` INNER JOIN `qa_words` ON `qa_words`.`wordid` = `qa_tagwords`.`wordid` WHERE `qa_tagwords`.`postid` = ".$value['postid'].";");
+																			foreach ($tags as $key => $tagv) {
+																				echo '<a href="/pages/tags.php?tag='.$tagv['word'].'" class="btn btn-labeled btn-xs" title="'.$tagv['word'].'">
+																						<i class="fa fa-tag" aria-hidden="true"></i>&nbsp;'.$tagv['word'].'
+																				</a>&nbsp;&nbsp;';
+																				}
+																			 ?>
+
+																			</div>
+																	<div class="footer content">
+																	 asked <?php echo time_elapsed_string($value['created']); echo " by <a href='/pages/users.php?handle=".$value['handle']."'>".$pic."&nbsp;".$value['handle']."</a>"; ?>
+																 </div>
 															</div>
-															<!-- <div class="action">
-																	<button type="button" class="btn btn-primary btn-xs" title="Edit">
-																			<span class="glyphicon glyphicon-pencil"></span>
-																	</button>
-																	<button type="button" class="btn btn-success btn-xs" title="Approved">
-																			<span class="glyphicon glyphicon-ok"></span>
-																	</button>
-																	<button type="button" class="btn btn-danger btn-xs" title="Delete">
-																			<span class="glyphicon glyphicon-trash"></span>
-																	</button>
-															</div> -->
+
 													</div>
 											</div>
 											<?php
