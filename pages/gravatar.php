@@ -20,10 +20,10 @@ foreach ($query as $key => $value) {
 
 if (isset($_POST) && $_POST['type'] == 'gravatar') {
 
-  // $default = "https://www.gravatar.com/avatar/";
+  $default = "https://www.gravatar.com/avatar/";
   $size = 200;
   $hash = $connection -> quote(md5( strtolower( trim( $email ) ) ));
-  $grav_url =$connection -> quote("https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) ."?s=" . $size);
+  $grav_url =$connection -> quote("https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) ."?d=".urlencode( $default )."&s=" . $size);
 
   $check = $connection -> select("SELECT `blobid`, `filename`, `userid`, `gravatar` FROM `qa_blobs` WHERE `filename`=".$grav_url.";");
   if (count($check) == 0) {
