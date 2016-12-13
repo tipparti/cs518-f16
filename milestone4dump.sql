@@ -2,8 +2,8 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Dec 10, 2016 at 07:55 PM
+-- Host: localhost:3306
+-- Generation Time: Dec 13, 2016 at 05:37 PM
 -- Server version: 5.6.28
 -- PHP Version: 5.6.25
 
@@ -19,77 +19,14 @@ USE `cs518`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answers`
---
-
-CREATE TABLE `answers` (
-  `ans_id` int(11) NOT NULL,
-  `ans_content` varchar(1100) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `ans_posted_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `ans_approval` int(11) NOT NULL DEFAULT '0',
-  `q_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `answers`
---
-
-INSERT INTO `answers` (`ans_id`, `ans_content`, `user_id`, `ans_posted_dt`, `ans_approval`, `q_id`) VALUES
-(1, 'Hello', 1, '2016-10-31 23:58:00', 0, 1),
-(2, '\r\nI created the following Relational Diagram in Sql Power Architect (as I was told to do at school). The next step presented in the course is to use Forward Engineer to get the script and paste it in Sql Management Server using new Query. I get this Error " There is already an object named \'Author\' in the database." I have no knowledge of what it means or how should be corrected. I can not go to the next steps in the course if I ca`t execute without errrors. ( I read previous asked questions but I am not sure the answers apply to my script.)\r\n', 5, '2016-11-01 05:07:13', 0, 1),
-(3, '\r\nI created the following Relational Diagram in Sql Power Architect (as I was told to do at school). The next step presented in the course is to use Forward Engineer to get the script and paste it in Sql Management Server using new Query. I get this Error " There is already an object named \'Author\' in the database." I have no knowledge of what it means or how should be corrected. I can not go to the next steps in the course if I ca`t execute without errrors. ( I read previous asked questions but I am not sure the answers apply to my script.)\r\n', 5, '2016-11-01 05:07:17', 0, 1),
-(4, '\r\nI created the following Relational Diagram in Sql Power Architect (as I was told to do at school). The next step presented in the course is to use Forward Engineer to get the script and paste it in Sql Management Server using new Query. I get this Error " There is already an object named \'Author\' in the database." I have no knowledge of what it means or how should be corrected. I can not go to the next steps in the course if I ca`t execute without errrors. ( I read previous asked questions but I am not sure the answers apply to my script.)\r\n', 1, '2016-11-01 05:07:19', 0, 1),
-(5, '\r\nI created the following Relatio\r\n\r\nnal Diagram in Sql Power Architect (as I was told to do at school). The next step presented in the course is to use Forward Engineer to get the script and paste it in Sql Management Server using new Query. I get this Error " There is already an object named \'Author\' in the database." I have no knowledge of what it means or how should be corrected. I can not go to the next steps in the course if I ca`t execute without errrors. ( I read previous asked questions but I am not sure the answers apply to my script.)\r\n', 1, '2016-11-01 05:08:27', 0, 1),
-(6, 'Hello', 1, '2016-11-01 05:14:45', 0, 1),
-(7, 'nt Server using new Query. I get this Error " There is already an object named \'Author\' in the database." I have no knowledge of what it means or how should be corrected. I can not go to the next steps in the course if I ca`t ', 1, '2016-11-01 05:44:08', 0, 1),
-(8, ' use Google Cloud Vision Api (Text_Detection) it is working normal but when ı return answer from the Google, message style like image I want just one text e.g "ACADEMIC PLANNER" so how can ı remove front of Academic "null:" and other w', 1, '2016-11-01 08:10:56', 0, 3),
-(9, 'Hello\r\n', 1, '2016-11-01 15:01:29', 0, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `answers_votes`
---
-
-CREATE TABLE `answers_votes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `question_id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `answer_id` int(10) UNSIGNED NOT NULL,
-  `votes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `avatar`
---
-
-CREATE TABLE `avatar` (
-  `id` int(11) NOT NULL,
-  `filename` varchar(254) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `avatar`
---
-
-INSERT INTO `avatar` (`id`, `filename`) VALUES
-(1, 'default.jpg'),
-(2, 'D04.png'),
-(3, 'default_0.jpg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `qa_blobs`
 --
 
 CREATE TABLE `qa_blobs` (
   `blobid` bigint(20) UNSIGNED NOT NULL,
   `filename` varchar(255) DEFAULT NULL,
-  `userid` int(10) UNSIGNED DEFAULT NULL,
+  `userid` int(10) UNSIGNED NOT NULL,
+  `gravatar` tinyint(1) NOT NULL,
   `created` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -97,17 +34,25 @@ CREATE TABLE `qa_blobs` (
 -- Dumping data for table `qa_blobs`
 --
 
-INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `created`) VALUES
-(1, 'thumb_583419ae0292e.jpg', 3, '2016-11-22 05:10:54'),
-(2, 'thumb_58344e3e0aaaa.jpg', 1, '2016-11-22 08:55:10'),
-(3, 'thumb_58347c65495ee.png', 1, '2016-11-22 12:12:05'),
-(4, 'thumb_5834bf1e03bb0.png', 1, '2016-11-22 16:56:46'),
-(5, 'thumb_5834bf234df87.png', 1, '2016-11-22 16:56:51'),
-(6, 'thumb_583e27da04f37.jpg', 1, '2016-11-29 20:14:02'),
-(7, 'thumb_583e27ff2474f.jpg', 1, '2016-11-29 20:14:39'),
-(8, 'thumb_583e2821bc99d.jpg', 1, '2016-11-29 20:15:13'),
-(9, 'thumb_584ab79db3008.jpg', 1, '2016-12-09 08:54:37'),
-(10, 'thumb_584c3e2cafe0d.jpg', 1, '2016-12-10 12:41:00');
+INSERT INTO `qa_blobs` (`blobid`, `filename`, `userid`, `gravatar`, `created`) VALUES
+(1, '16783195.jpg', 23, 0, '2016-12-11 20:04:29'),
+(4, 'thumb_584df9b778759.jpg', 1, 0, '2016-12-11 20:13:27'),
+(7, 'https://www.gravatar.com/avatar/117228c7cf51dc14ea3605642684b6d1?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 1, 1, '2016-12-11 20:34:38'),
+(8, 'https://www.gravatar.com/avatar/fe283dd0f08480d6476882afe08b7554?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 2, 1, '2016-12-11 22:04:01'),
+(9, 'https://www.gravatar.com/avatar/4bf09dfca45ad47c7ba68c51201ebbc4?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 3, 1, '2016-12-11 22:05:59'),
+(10, 'https://www.gravatar.com/avatar/526a81ee4584cc3ccc80d39fe2b1920f?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 4, 1, '2016-12-11 22:07:37'),
+(11, 'https://www.gravatar.com/avatar/7e79510751e0d7c716c2090a290233cb?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 5, 1, '2016-12-11 22:08:17'),
+(12, 'https://www.gravatar.com/avatar/2c04afec1332f3daa717122cdb68d589?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 6, 1, '2016-12-11 22:09:05'),
+(13, 'https://www.gravatar.com/avatar/dcb4411ac77c4ab6d7775805f9d4b6a3?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 7, 1, '2016-12-11 22:09:39'),
+(14, 'https://www.gravatar.com/avatar/354cf6559ca3eb774c43c8626d6f9db0?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 8, 1, '2016-12-11 22:10:13'),
+(15, 'https://www.gravatar.com/avatar/6c66ec47be3150a12bcbfbaa61be9bff?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 9, 1, '2016-12-11 22:10:43'),
+(16, 'https://www.gravatar.com/avatar/fe2614d65e5a307237f374aa30c7f641?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 10, 1, '2016-12-11 22:11:45'),
+(17, 'https://www.gravatar.com/avatar/d2d3c8b5add607a993d1a12af2cac98b?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 11, 1, '2016-12-11 22:12:26'),
+(18, 'https://www.gravatar.com/avatar/96c87722f5469e53dd4cd50e02f5fcfb?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 12, 1, '2016-12-11 22:12:58'),
+(19, 'https://www.gravatar.com/avatar/ae9783e999fff575cd2bfaef5b8aae1c?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 13, 1, '2016-12-11 22:13:26'),
+(20, 'https://www.gravatar.com/avatar/55f1736b72335675508d4452cd62b35b?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 14, 1, '2016-12-11 22:13:50'),
+(21, 'https://www.gravatar.com/avatar/22de2ac897255f7741946283351d661a?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 15, 1, '2016-12-11 22:14:29'),
+(22, 'https://www.gravatar.com/avatar/f71d757df1b7f29a042f7a0e4f5e9317?d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F&s=200', 23, 1, '2016-12-12 10:07:31');
 
 -- --------------------------------------------------------
 
@@ -126,6 +71,8 @@ CREATE TABLE `qa_posts` (
   `downvotes` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   `netvotes` smallint(6) NOT NULL DEFAULT '0',
   `views` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `flagged` tinyint(1) NOT NULL,
+  `flag_id` int(11) NOT NULL DEFAULT '0',
   `flagcount` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `format` varchar(20) CHARACTER SET ascii NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
@@ -141,35 +88,29 @@ CREATE TABLE `qa_posts` (
 -- Dumping data for table `qa_posts`
 --
 
-INSERT INTO `qa_posts` (`postid`, `type`, `parentid`, `acount`, `amaxvote`, `userid`, `upvotes`, `downvotes`, `netvotes`, `views`, `flagcount`, `format`, `created`, `updated`, `title`, `content`, `tags`, `selects`, `s_userid`) VALUES
-(2, 'Q', NULL, 4, 0, 1, 0, 0, 2, 0, 0, 'html', '2016-11-22 02:13:11', NULL, 'b&gt;DO&lt;/b&gt; Exist', '<pre>\r\n~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;</pre>\r\n', NULL, NULL, 0),
-(3, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 04:14:06', NULL, NULL, '<p>?:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you canno</p>\r\n', NULL, NULL, 0),
-(4, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 09:16:30', NULL, 'Alerts', '<p>Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.</p>\r\n', NULL, NULL, 0),
-(5, 'Q', NULL, 0, 0, 3, 0, 0, 0, 0, 0, 'html', '2016-11-22 13:01:59', NULL, 'Ghosts &lt;b&gt;DO&lt;/b&gt;', '<pre>\r\n~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;\r\n</pre>\r\n', NULL, NULL, 0),
-(6, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:33:20', NULL, 'ellejbrunellejbrunellejbrunellej', '<pre>\r\nrunellejbrunellejbrunellejbrunellejbrunellejbrunellejbrunellejbrunelle</pre>\r\n\r\n<pre>\r\nellejbrunellejbrunellejbrunellej</pre>\r\n', NULL, NULL, 0),
-(7, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:33:35', NULL, 'ellejbrunelle', '<pre>\r\nellejbrunellejbrunellejbrunellej</pre>\r\n', NULL, NULL, 0),
-(8, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:28', NULL, '&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(9, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:40', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(10, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:46', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(11, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:51', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(12, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:36:58', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(13, 'Q', NULL, 0, 0, 1, 0, 0, 1, 0, 0, 'html', '2016-11-22 16:37:37', NULL, '?:{}+}\\|}{P{}|-/*?&quot; 		&quot;123456789 123456789123456789123456789&quot;', '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(14, 'A', 2, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-11-22 16:37:54', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(15, 'A', 2, 0, 0, 1, 0, 0, -1, 0, 0, 'html', '2016-11-22 16:37:59', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(16, 'A', 2, 0, 0, 1, 0, 0, 1, 0, 0, 'html', '2016-11-22 16:38:04', NULL, NULL, '<pre>\r\n?:{}+}\\|}{P{}|-/*?&quot;\r\n		&quot;123456789 123456789123456789123456789&quot;</pre>\r\n', NULL, NULL, 0),
-(26, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 15:20:49', NULL, 'Test', '<p>test</p>\r\n', 'test,est1,test2', NULL, 0),
-(27, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 15:26:02', NULL, 'test 2', '<p>test 3</p>\r\n', 'test', NULL, 0),
-(28, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 15:30:45', NULL, 'test 3 ', '<p>test3</p>\r\n', 'php,xcode,css', NULL, 0),
-(29, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 15:55:59', NULL, 'test 4', '<p>test 5</p>\r\n', 'test5,test,php,code', NULL, 0),
-(30, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:02:04', NULL, 'test', '<p>test</p>\r\n', 'test,test2,gg', NULL, 0),
-(31, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:02:56', NULL, 'test 9', '<p>tes</p>\r\n', 'test,php', NULL, 0),
-(32, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:06:02', NULL, 'xcode test1', '<p>xcode test1</p>\r\n', 'test,php,xcode', NULL, 0),
-(33, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:07:43', NULL, 'xcode query', '<p>qyery</p>\r\n', 'php,xcode', NULL, 0),
-(34, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:09:53', NULL, 'qwerty', '<p>qwerty</p>\r\n', 'qwerty,php', NULL, 0),
-(35, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:10:37', NULL, 'gooogle', '<p>google</p>\r\n', 'php,xcode', NULL, 0),
-(36, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-09 16:12:27', NULL, 'xcode11', '<p>xcode1</p>\r\n', 'xcode,php', NULL, 0),
-(37, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-10 02:28:55', NULL, 'php mysql xcode', '<p>php mysql xcode</p>\r\n', 'php,mysql,xcode', NULL, 0),
-(38, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 'html', '2016-12-10 12:07:15', NULL, 'increase font size of hyperlink text html', '<p>am working on web application where I have taken <em>href</em>. But the default font of it is too small when comparing to the page. So I want to increase the size of the font.</p>\r\n', 'html,css,font-size', NULL, 0);
+INSERT INTO `qa_posts` (`postid`, `type`, `parentid`, `acount`, `amaxvote`, `userid`, `upvotes`, `downvotes`, `netvotes`, `views`, `flagged`, `flag_id`, `flagcount`, `format`, `created`, `updated`, `title`, `content`, `tags`, `selects`, `s_userid`) VALUES
+(1, 'Q', NULL, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 13:49:45', NULL, 'Find a repeat word in each line', '<div class="post-text">\r\n<p>I have a string and I want to find the index of repeated word in each line:</p>\r\n\r\n<pre>\r\n<code>string = &quot;string3 is nice, string2 . string3 is good.&quot;\r\nx = &quot;string3&quot;\r\nfor word in set(string.split()):\r\n if &quot;string3&quot; in word: \r\n    u =  string.index(x)\r\n    print(x, u)</code></pre>\r\n\r\n<p>I want to find &quot;<strong>string3</strong>&quot; and their indexes. The problem in my code it&#39;s only finding the first &quot;<strong>string3</strong>&quot; in &quot;<code>string3 is nice</code>&quot; and doesn&#39;t go to next line <code>&quot;string3 is good&quot;</code></p>\r\n\r\n<p>any idea why?..</p>\r\n</div>\r\n', 'python', NULL, 0),
+(2, 'Q', NULL, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 13:54:14', NULL, 'How does react native compile it\'s code into native apps?', '<div class="post-text">\r\n<p>recently started working with react native and project requires for apps to be build on server. So the theory is that app could be build on request, which means something, lets call this something react native compiler, needs to be on some server which allows me to do this.</p>\r\n\r\n<p>For example, this is the location where is react native compiler is &quot;<a href="http://example.com/compile" rel="nofollow noreferrer">http://example.com/compile</a>&quot;, and you have some settings options and button &quot;compile&quot; on that site, and when you click on button, application compiler starts, and after x seconds android and iphone apps are ready to be downloaded. Is this possible?</p>\r\n</div>\r\n', 'reaact,angular', NULL, 0),
+(3, 'Q', NULL, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 13:58:15', NULL, 'Can i populate a database from another database', '<p>I&#39;m trying to create a data warehouse.</p>\r\n\r\n<p>Is it possible to populate a table in db1, from data in db2.</p>\r\n\r\n<p>For example</p>\r\n\r\n<p>Corporate Database Table Route</p>\r\n\r\n<pre>\r\n<code>CREATE TABLE ROUTE (\r\nRouteID INTEGER(4) PRIMARY KEY,\r\nRouteName VARCHAR (50) NOT NULL,\r\nBoardingStop VARCHAR (50) NOT NULL,\r\nAlightingStop VARCHAR (50) NOT NULL\r\n);</code></pre>\r\n\r\n<p>Insert Information INSERT INTO <code>ROUTE</code> (<code>RouteID</code>,<code>RouteName</code>,<code>BoardingStop</code>,<code>AlightingStop</code>) VALUES (1,&quot;ab&quot;,&quot;B&quot;,&quot;C&quot;)</p>\r\n\r\n<p>Data warehouse table dimRoute</p>\r\n\r\n<pre>\r\n<code>CREATE TABLE DimROUTE (\r\nRouteID INTEGER(4),\r\nRouteName VARCHAR (50) NOT NULL,\r\nBoardingStop VARCHAR (50) NOT NULL,\r\nAlightingStop VARCHAR (50) NOT NULL,\r\nPRIMARY KEY(RouteID)\r\n);</code></pre>\r\n', 'phpmyadmin,sql', NULL, 0),
+(4, 'Q', NULL, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:01:45', NULL, 'Drag and Drop with a button to upload', '<div class="post-text">\r\n<p>I am trying to implement a drag-and-drop interface for web browsers with the following behavior.</p>\r\n\r\n<ol>\r\n	<li>There should be a drag-n-drop area which people can use to upload images (They can upload only one at a time).</li>\r\n	<li>Once they drop an image, a preview should be shown with a button to upload the file to a server</li>\r\n	<li>On click, a POST request is sent to the webserver, which does some processing and returns back an image.</li>\r\n	<li>And now, we display both the images in parallel.</li>\r\n</ol>\r\n\r\n<p>I am trying to implement the example from here <a href="http://html5demos.com/dnd-upload" rel="nofollow noreferrer">http://html5demos.com/dnd-upload</a></p>\r\n\r\n<p>However, I need to be able to upload only when I click a button instead of auto-upload.</p>\r\n\r\n<p>How do I do this? [JS newbie, so spare no detail :) ]</p>\r\n</div>\r\n', 'html,javascript,php,css', NULL, 0),
+(5, 'Q', NULL, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:03:28', NULL, 'cache pictures from remote server with varnish', '<p>I&#39;m creating simple page where will a lot of pictures. All pictures are hosted on remote provider (hosted on object storage and I have only links to all pictures) To speed up www I would like to use varnish to cache this pictures but I have problem:<br />\r\nAll pictures are served with https, so I&#39;ve used haproxy to terminate ssl and next traffic go to varnish, but how to map in varnish website address that should be visible for end user like <a href="https://www.website.com/picture.jpg" rel="nofollow noreferrer">https://www.website.com/picture.jpg</a> with remote address where is picture hosted(<a href="https://www.remotehostedpictures.com/picture.jpg" rel="nofollow noreferrer">https://www.remotehostedpictures.com/picture.jpg</a>) . So, in final result user must see first link, remote address remotehostedpictures.com/picture.jpg can&#39;t be visible.</p>\r\n', 'wordpress,html,ajax', NULL, 0),
+(6, 'Q', NULL, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:05:01', NULL, 'How to see backup size in Cloudberry Backup before running it', '<p>I am evaluating using Cloudberry Backup. I was previously using Mozy backup service, and I really liked how when you were creating a backup plan, it would show you in real time the total size of the backup as you were creating it. Since with Cloudberry Backup, I am paying a 3rd party to store the data (in my case Amazon S3), I want to see how much data I&#39;ll be actually using before running the backup. Is there a way to see this in Cloudberry Backup?</p>\r\n', 'css,php,angular', NULL, 0),
+(7, 'Q', NULL, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:06:37', NULL, 'Replace unknown numeric value within binary file on command line', '<div class="post-text">\r\n<p>I&#39;d like to replace some unknown values within a directory of binary files. Some, but now all the the files in the directory contain (mid way through a line) something like the following.</p>\r\n\r\n<p>&quot;myValue&quot;:&quot;65&quot;</p>\r\n\r\n<p>I&#39;d like to be able to modify them all to something like</p>\r\n\r\n<p>&quot;myValue&quot;:&quot;57&quot;</p>\r\n\r\n<p>I don&#39;t know the initial value as it&#39;s different in each file but I&#39;d like them all to be the same. I guess i&#39;m going to need sed with regex but I&#39;m absolutely useless with regular expressions.</p>\r\n</div>\r\n', 'python,ajax', NULL, 0),
+(8, 'Q', NULL, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:07:41', NULL, 'HTML/Javascript - popup box', '<p>I have a problem with a modal popup window on my site.</p>\r\n\r\n<p>The problem is that my modal popup window is used for a promotion code so every time someone puts an promotion code and presses Submit button it doesn&#39;t work...</p>\r\n\r\n<p>It should change the amount of coins to 100.</p>\r\n\r\n<p>Here is the code:</p>\r\n\r\n<pre>\r\n<code>&lt;input type=&quot;submit&quot; value=&quot;SUBMIT CODE&quot; onclick=&quot;myFunction()&quot;&gt;\r\n\r\n&lt;script&gt;\r\n  function myFunction() {\r\n    document.getElementById(&quot;coin&quot;).innerHTML = document.getElementById(&quot;pcode&quot;).value;\r\n&lt;/script&gt;</code></pre>\r\n', 'jquery,javascript,css', NULL, 0),
+(9, 'Q', NULL, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:09:25', NULL, 'Matching a number to closest number in a set in Javascript', '<p>I won&#39;t give you a written algorithm, but the general idea: Have a variable of <code>lowestDifference</code>, initially set to JavaScript&#39;s Infinity. Iterate over the array, calculate the difference between the input number (or numbers for that matter) and the current number in the array (use Math.abs on the result). If the difference is lower than the <code>lowestDifference</code>, save it to a variable denoting the answer. And to be precise to your requirement, in case the difference is equal to the <code>lowestDifference</code>, change the answer to the new array element only if it&#39;s lower than the input number.</p>\r\n', 'javascript,angular', NULL, 0),
+(10, 'Q', NULL, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:12:35', NULL, 'Matching a number to closest number in a set in Javascript', '<p>I won&#39;t give you a written algorithm, but the general idea: Have a variable of <code>lowestDifference</code>, initially set to JavaScript&#39;s Infinity. Iterate over the array, calculate the difference between the input number (or numbers for that matter) and the current number in the array (use Math.abs on the result). If the difference is lower than the <code>lowestDifference</code>, save it to <code>lowestDifference</code> and save the array element to a variable denoting the answer. And to be precise to your requirement, in case the difference is equal to the <code>lowestDifference</code>, change the answer to the new array element only if it&#39;s lower than the input number.</p>\r\n', 'javascript,html,css', NULL, 0),
+(11, 'Q', NULL, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:14:00', NULL, 'Issues with function event - FireFox', '<div class="post-text">\r\n<p>I&#39;ve recently taken over a project from a previous developer and I&#39;m stuck on the below error that occurs on FireFox only. I&#39;m quite useless when it comes to jQuery so I&#39;m hoping it&#39;s a relatively easy fix.</p>\r\n\r\n<p>I&#39;m getting event is undefined for the service_init function. Any ideas? I&#39;ve tried adding</p>\r\n\r\n<pre>\r\n<code>event = event || window.event;</code></pre>\r\n\r\n<p>and have also added the event parameter to the function</p>\r\n\r\n<pre>\r\n<code>jQuery(document).ready(function() {\r\n\r\n    var $serviceClick = jQuery(&quot;.service-selector a&quot;);\r\n    var $serviceBox = jQuery(&quot;.post-content-ajax&quot;);\r\n    var $random = $serviceClick.eq([Math.floor(Math.random()*$serviceClick.length)]);\r\n\r\n    function service_init(event) {\r\n        event = event || window.event;\r\n        event.preventDefault();\r\n        event.stopPropagation();\r\n        jQuery(&quot;.post-content-ajax&quot;).css(&#39;display&#39;, &#39;none&#39;);\r\n        $dataTarget = $random.data(&#39;service&#39;);\r\n        $random.removeClass(&#39;active-service&#39;).addClass(&#39;active-service&#39;);\r\n        jQuery(&quot;#&quot; + $dataTarget).css(&#39;display&#39;, &#39;block&#39;);\r\n        jQuery(this).addClass(&#39;active-service&#39;);\r\n        jQuery(this).prev().removeClass(&#39;active-service&#39;);\r\n    }\r\n    service_init();\r\n\r\n    jQuery($serviceClick).click(function(event) {\r\n        event.preventDefault();\r\n        event.stopPropagation();            \r\n        jQuery($serviceClick).removeClass(&#39;active-service&#39;);\r\n        $dataTarget = jQuery(this).data(&#39;service&#39;);\r\n        jQuery(&quot;.post-content-ajax&quot;).css(&#39;display&#39;, &#39;none&#39;);\r\n        jQuery(&quot;#&quot; + $dataTarget).css(&#39;display&#39;, &#39;block&#39;);\r\n        jQuery(this).addClass(&#39;active-service&#39;);\r\n        jQuery(this).prev().removeClass(&#39;active-service&#39;);\r\n\r\n\r\n    });\r\n});</code></pre>\r\n</div>\r\n', 'jquery,ajax,javascript', NULL, 0),
+(12, 'Q', NULL, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:15:48', NULL, 'Android app crash while converting with media codec with MP4 formatting?', '<p>I have an app which get data as byte from onPreviewFrame and pass to my encoder which is another class implement media codec api of android get data and make a video file. It works file with format &quot;video/avc&quot; but crash fro &quot;mpeg4&quot; with showing a thread error. What could be the reason?</p>\r\n', 'andriod,php', NULL, 0),
+(13, 'Q', NULL, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:17:29', NULL, 'How to sort and array of objects where the key is the date', '<p>I have seen this question and none of them answer my question. So consider the following:</p>\r\n\r\n<pre>\r\n<code>[\r\n  { &#39;August 17th 2016&#39;: [75] }, // 75 is the length of the array which contains up to 75 objects ... \r\n  { &#39;August 1st 2016&#39;: [5] },\r\n  { &#39;August 28th 2016&#39;: [5] },\r\n  ...\r\n]</code></pre>\r\n\r\n<p>Whats the best way to sort the objects in this array by their date and still keep the &quot;english&quot; representation of their key?</p>\r\n\r\n<p><strong>Note</strong>: The key is used as a chart label.</p>\r\n\r\n<p>Every where I look uses <code>array.sort</code> but thats on the objects key of say <code>created_at</code>.</p>\r\n\r\n<p>The result should be:</p>\r\n\r\n<pre>\r\n<code>[\r\n  { &#39;August 1st 2016&#39;: [5] },\r\n  { &#39;August 17th 2016&#39;: [75] }\r\n  { &#39;August 28th 2016&#39;: [5] },\r\n  ...\r\n]</code></pre>\r\n', 'javascript,html,css', NULL, 0),
+(14, 'Q', NULL, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 14:19:52', NULL, 'Html input is not selected on click', '<div class="post-text">\r\n<p>I am adding input via jQuery but can&#39;t type anything in it, on click the default blue outline appears and disappears at once. What can be wrong?</p>\r\n\r\n<pre>\r\n<code>$(&#39;#user_description&#39;).html(&#39;&lt;input type=&quot;text&quot; value=&quot;&quot; /&gt;&#39;)</code></pre>\r\n\r\n<p>css:</p>\r\n\r\n<pre>\r\n<code>#user_description input{\r\nwidth: 300px;\r\n height: 31px;\r\n      background: #403a48;\r\n    border: none;\r\n\r\n}</code></pre>\r\n</div>\r\n', 'html,css', NULL, 0),
+(15, 'Q', NULL, 3, 0, 14, 0, 0, -1, 0, 0, 20, 0, 'html', '2016-12-11 14:21:41', NULL, 'How do I create a high score table?', '<div class="post-text">\r\n<p>I&#39;ve created a game (yatzy) for a school project and I would like to be able to save the scores and preferably sort them. When all score fields are filled in a message box will pop up telling you the total score. I would like this score to be saved together with previous and upcoming scores. The high score list should also be veiwable by clicking a button.</p>\r\n\r\n<p>I&#39;ve tried finding a solution but I have no idea how to proceed. I understand that I should use XML or something but I&#39;m not very familiar with it. Any help are appreciated, thanks.</p>\r\n</div>\r\n', 'html,css', NULL, 0),
+(16, 'Q', NULL, 1, 0, 15, 0, 0, 2, 0, 0, 17, 0, 'html', '2016-12-11 14:23:00', NULL, 'Parse folder names and rename folders by using a batch command', '<div class="post-text">\r\n<p>I&#39;m trying to rename a large number of folders that have dates as names. I have created a test folder that contains just two such folders. Their names are</p>\r\n\r\n<p>1-23-2014 10-1-2016</p>\r\n\r\n<p>I want to rename them to</p>\r\n\r\n<p>2014-01-23 2016-10-01</p>\r\n\r\n<p>In a command window run as administrator (probably not necessary) I have entered these commands.</p>\r\n\r\n<pre>\r\n<code>C:\\Users\\Harry\\Documents\\Test Batch Job&gt;dir\r\n Volume in drive C is Windows\r\n Volume Serial Number is 30C3-D653\r\n\r\n Directory of C:\\Users\\Harry\\Documents\\Test Batch Job\r\n\r\n12/11/2016  01:52 PM    &lt;DIR&gt;          .\r\n12/11/2016  01:52 PM    &lt;DIR&gt;          ..\r\n11/27/2016  10:33 PM    &lt;DIR&gt;          1-23-2014\r\n11/27/2016  10:33 PM    &lt;DIR&gt;          10-1-2016\r\n               0 File(s)              0 bytes\r\n               4 Dir(s)  309,874,257,920 bytes free\r\n\r\nC:\\Users\\Harry\\Documents\\Test Batch Job&gt;for /f &quot;tokens=1,2,3 delims=-&quot; %%A in (&quot;%~dp0&quot;) do rename %%A-%%B-%%C %%C-%%A-%%B\r\n%%A was unexpected at this time.\r\n\r\nC:\\Users\\Harry\\Documents\\Test Batch Job&gt;\r\n</code></pre>\r\n\r\n<p>I&#39;m aware that I don&#39;t deal with the missing leading zeros with this command -- I&#39;ll deal with that after I get this command working.</p>\r\n\r\n<p>I am getting the error message</p>\r\n\r\n<p>%%A was unexpected at this time.</p>\r\n\r\n<p>How can I get past this error? Thanks.</p>\r\n</div>\r\n', 'ajax,jquery', NULL, 0),
+(17, 'A', 16, 0, 0, 23, 0, 0, 1, 0, 1, 0, 0, 'html', '2016-12-11 22:58:05', NULL, NULL, '<p>I am getting the error message</p>\r\n\r\n<p>%%A was unexpected at this time</p>\r\n\r\n<p>How can I get past this error? Thanks.</p>\r\n', NULL, NULL, 0),
+(18, 'A', 15, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 22:58:25', NULL, NULL, '<p>hool project and I would like to be able to save the scores and pferably sort them. When all score fields are filled in a message box will pop up telling you the total score. I would like this score to be saved together with pvious and upcoming scores. The high score list should also be veiwable by clicking a button.</p>\r\n', NULL, NULL, 0),
+(19, 'A', 15, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-11 22:58:30', NULL, NULL, '<p>hool project and I would like to be able to save the scores and pferably sort them. When all score fields are filled in a message box will pop up telling you the total score. I would like this score to be saved together with pvious and upcoming scores. The high score list should also be veiwable by clicking a button.</p>\r\n', NULL, NULL, 0),
+(20, 'A', 15, 0, 0, 23, 0, 0, -1, 0, 1, 0, 0, 'html', '2016-12-11 22:58:37', NULL, NULL, '<p>hool project and I would like to be able to save the scores and pferably sort them. When all score fields are filled in a message box will pop up telling you the total score. I would like this score to be saved together with pvious and upcoming scores. The high score list should also be veiwable by clicking a button.</p>\r\n', NULL, NULL, 0),
+(21, 'Q', NULL, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-12 11:14:04', NULL, 'Check both if empty or if contains value in Javascript object (ES2015)', '<div class="post-text">\r\n<p>I&#39;m trying to figure out the best and most clean/concise way to check first if an object even has any values, and if so, if one of those values is <code>71</code>.</p>\r\n\r\n<p>In essence, if the object is <code>empty</code> then the function should return <code>true</code>. Also if the function isn&#39;t <code>empty</code> but contains <code>71</code> as one of the values (they&#39;re numerically indexed) then it should be true. Everything else false.</p>\r\n\r\n<p>What I have at the moment works but seems kinda messy and lengthy:</p>\r\n\r\n<p><code>facets</code> is the object</p>\r\n\r\n<pre>\r\n<code>if (Object.keys(facets).length === 0) {\r\n  if (facets[index] == 71) {\r\n    return true;\r\n  } else {\r\n    return false;\r\n  }\r\n}</code></pre>\r\n</div>\r\n', 'javascript', NULL, 0),
+(22, 'Q', NULL, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 'html', '2016-12-12 21:44:04', NULL, 'Using sockets for JNI to java communication', '<p>&nbsp;I wish to use sockets for communication between JNI and Java source code. Are there any sample working implementations?</p>\r\n', 'java,sockets,native', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -188,10 +129,13 @@ CREATE TABLE `qa_posttags` (
 --
 
 INSERT INTO `qa_posttags` (`postid`, `wordid`, `postcreated`) VALUES
-(37, 10, '2016-12-10 02:28:55'),
-(37, 16, '2016-12-10 02:28:55'),
-(37, 11, '2016-12-10 02:28:55'),
-(38, 17, '2016-12-10 12:07:15');
+(8, 7, '2016-12-11 14:07:41'),
+(9, 7, '2016-12-11 14:09:25'),
+(10, 7, '2016-12-11 14:12:35'),
+(14, 6, '2016-12-11 14:19:52'),
+(21, 7, '2016-12-12 11:14:04'),
+(22, 14, '2016-12-12 21:44:04'),
+(22, 15, '2016-12-12 21:44:04');
 
 -- --------------------------------------------------------
 
@@ -209,20 +153,49 @@ CREATE TABLE `qa_tagwords` (
 --
 
 INSERT INTO `qa_tagwords` (`postid`, `wordid`) VALUES
-(33, 10),
-(33, 11),
-(34, 12),
-(34, 10),
-(35, 10),
-(35, 11),
-(36, 11),
-(36, 10),
-(37, 10),
-(37, 16),
-(37, 11),
-(38, 17),
-(38, 18),
-(38, 19);
+(1, 1),
+(2, 2),
+(2, 3),
+(3, 4),
+(3, 5),
+(4, 6),
+(4, 7),
+(4, 8),
+(4, 9),
+(5, 10),
+(5, 6),
+(5, 11),
+(6, 9),
+(6, 8),
+(6, 3),
+(7, 1),
+(7, 11),
+(8, 12),
+(8, 7),
+(8, 9),
+(9, 7),
+(9, 3),
+(10, 7),
+(10, 6),
+(10, 9),
+(11, 12),
+(11, 11),
+(11, 7),
+(12, 13),
+(12, 8),
+(13, 7),
+(13, 6),
+(13, 9),
+(14, 6),
+(14, 9),
+(15, 6),
+(15, 9),
+(16, 11),
+(16, 12),
+(21, 7),
+(22, 14),
+(22, 15),
+(22, 16);
 
 -- --------------------------------------------------------
 
@@ -265,11 +238,24 @@ CREATE TABLE `qa_userpoints` (
 --
 
 INSERT INTO `qa_userpoints` (`userid`, `points`, `qposts`, `aposts`, `cposts`, `aselects`, `aselecteds`, `qupvotes`, `qdownvotes`, `aupvotes`, `adownvotes`, `qvoteds`, `avoteds`, `upvoteds`, `downvoteds`, `bonus`) VALUES
-(1, 360, 2, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0),
-(2, 130, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 1, 0),
+(1, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (3, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (4, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(5, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(5, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(6, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(8, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(12, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(13, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(14, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(15, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(16, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(21, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(23, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -294,11 +280,22 @@ CREATE TABLE `qa_users` (
 --
 
 INSERT INTO `qa_users` (`userid`, `created`, `email`, `handle`, `avatarblobid`, `avatarwidth`, `avatarheight`, `passcheck`, `loggedin`) VALUES
-(1, '2016-11-22 01:51:08', 'admin@xyz.edu', 'admin', 10, NULL, NULL, '4e77c5eed085c1a433a6ddc8bf4130c9', '2016-11-22 01:51:08'),
-(2, '2016-11-22 02:26:33', 'jbrunelle@xyz.edu', 'jbrunelle', NULL, NULL, NULL, '40e77c0dcd4c2f84b93a340695c4a22c', '2016-11-22 02:26:33'),
-(3, '2016-11-21 00:27:06', 'dbarrett@xyz.edu', 'dbarrett', 1, NULL, NULL, 'fda14faa279c1123604c06f756c7af14', '2016-11-22 04:27:06'),
-(4, '2016-11-22 04:28:50', 'pvenkman@xyz.edu', 'pvenkman', NULL, NULL, NULL, '41f05c9bf093ca30867d7f352849fe15', '2016-11-22 04:28:50'),
-(5, '2016-11-22 04:31:13', 'rstantz@xyz.edu', 'rstantz', NULL, NULL, NULL, '3a6ac1b0a7dc16801e2522454d778f01', '2016-11-22 04:31:13');
+(1, '2016-12-11 11:07:24', 'ntipp001@odu.edu', 'admin', 4, NULL, NULL, '4e77c5eed085c1a433a6ddc8bf4130c9', '2016-12-11 11:07:24'),
+(2, '2016-12-11 11:09:33', 'jbrunelle@cs.odu.edu', 'jbrunelle', 8, NULL, NULL, '40e77c0dcd4c2f84b93a340695c4a22c', '2016-12-11 11:09:33'),
+(3, '2016-12-11 11:10:57', 'pvenkman@xyz.edu', 'pvenkman', 9, NULL, NULL, '41f05c9bf093ca30867d7f352849fe15', '2016-12-11 11:10:57'),
+(4, '2016-12-11 11:11:53', 'rstantz@odu.edu', 'rstantz', 10, NULL, NULL, '3a6ac1b0a7dc16801e2522454d778f01', '2016-12-11 11:11:53'),
+(5, '2016-12-11 11:12:36', 'dbarrett@xyz.edu', 'dbarrett', 11, NULL, NULL, 'fda14faa279c1123604c06f756c7af14', '2016-12-11 11:12:36'),
+(6, '2016-12-11 11:13:18', 'ltully@xyz.edu', 'ltully', 12, NULL, NULL, '50f8b210f0fb2ccdf14bb51804a8967f', '2016-12-11 11:13:18'),
+(7, '2016-12-11 11:14:02', 'espengler@xyz.edu', 'espengler', 13, NULL, NULL, 'bda901c7f42ecc301fd7ca211cbfc7f1', '2016-12-11 11:14:02'),
+(8, '2016-12-11 11:14:37', 'janine@xyz.edu', 'janine', 14, NULL, NULL, 'f4afa63a631c17ac6add6707f6de62af', '2016-12-11 11:14:37'),
+(9, '2016-12-11 11:16:43', 'winston@xyz.edu', 'winston', 15, NULL, NULL, '8e19620f4c93ab0d3e348c5d1adc6805', '2016-12-11 11:16:43'),
+(10, '2016-12-11 11:17:34', 'gozer@xyz.edu', 'gozer', 16, NULL, NULL, '87243a29a6a3a9f16ff76ec0dcf8a867', '2016-12-11 11:17:34'),
+(11, '2016-12-11 11:18:08', 'slimer@xyz.edu', 'slimer', 17, NULL, NULL, '5c117248e1c5aee2eaf29e00b8d1086c', '2016-12-11 11:18:08'),
+(12, '2016-12-11 11:18:50', 'zuul@xyz.edu', 'zuul', 18, NULL, NULL, '56e3d056e1273d276b1d5868d06660ba', '2016-12-11 11:18:50'),
+(13, '2016-12-11 11:19:24', 'keymaster@xyz.edu', 'keymaster', 19, NULL, NULL, 'a542e1dcfab848d32cff6624c42cb2b3', '2016-12-11 11:19:24'),
+(14, '2016-12-11 11:20:18', 'gatekeeper@xyz.edu', 'gatekeeper', 20, NULL, NULL, 'f37dfd8c66add2172d5dbad7590e29e5', '2016-12-11 11:20:18'),
+(15, '2016-12-11 11:21:08', 'staypuft@xyz.edu', 'staypuft', 21, NULL, NULL, '91d0f8c24026b7e757c55fceabfecdd4', '2016-12-11 11:21:08'),
+(23, '2016-12-11 20:04:29', 'ntippart@odu.edu', 'tipparti', 1, NULL, NULL, '9bf690704911733d1d5781316d4863f2', '2016-12-11 20:04:29');
 
 -- --------------------------------------------------------
 
@@ -318,15 +315,15 @@ CREATE TABLE `qa_uservotes` (
 --
 
 INSERT INTO `qa_uservotes` (`postid`, `userid`, `vote`, `flag`) VALUES
-(1, 2, -1, 0),
-(2, 2, 1, 0),
-(2, 3, 1, 0),
-(3, 3, 0, 0),
-(4, 3, 0, 0),
-(13, 3, 1, 0),
-(14, 3, 0, 0),
-(15, 3, -1, 0),
-(16, 3, 1, 0);
+(15, 1, -1, 0),
+(16, 1, 1, 0),
+(17, 1, 1, 0),
+(18, 1, 0, 0),
+(19, 1, 0, 0),
+(20, 1, -1, 0),
+(21, 1, 0, 0),
+(16, 23, 1, 0),
+(17, 23, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -348,137 +345,26 @@ CREATE TABLE `qa_words` (
 --
 
 INSERT INTO `qa_words` (`wordid`, `word`, `titlecount`, `contentcount`, `tagwordcount`, `tagcount`) VALUES
-(10, 'php', 0, 0, 0, 0),
-(11, 'xcode', 0, 0, 0, 0),
-(12, 'qwerty', 0, 0, 0, 0),
-(16, 'mysql', 0, 0, 0, 0),
-(17, 'html', 0, 0, 0, 0),
-(18, 'css', 0, 0, 0, 0),
-(19, 'font-size', 0, 0, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `question_tags`
---
-
-CREATE TABLE `question_tags` (
-  `q_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL,
-  `posted_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `question_votes`
---
-
-CREATE TABLE `question_votes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `question_id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `votes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `question_votes`
---
-
-INSERT INTO `question_votes` (`id`, `question_id`, `user_id`, `votes`) VALUES
-(1, 5, 1, 1),
-(2, 6, 1, 1),
-(10, 6, 6, 1),
-(11, 6, 4, -1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `questions`
---
-
-CREATE TABLE `questions` (
-  `question_id` int(11) NOT NULL,
-  `q_title` varchar(100) NOT NULL,
-  `q_content` varchar(1000) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `upvote` int(11) NOT NULL DEFAULT '0',
-  `dnvote` int(11) NOT NULL DEFAULT '0',
-  `posted_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `questions`
---
-
-INSERT INTO `questions` (`question_id`, `q_title`, `q_content`, `user_id`, `upvote`, `dnvote`, `posted_dt`) VALUES
-(2, 'Ensembles Linking with OS X Swift App', 'I\'m trying to incorporate Ensembles 1.0 into my Cocoa app (Swift). Followed instructions to the letter, and it cleanly compiles. Can\'t get past some link errors though:', 1, 0, 0, '2016-11-01 01:55:21'),
-(3, 'How can ı fix response text?', ' use Google Cloud Vision Api (Text_Detection) it is working normal but when ı return answer from the Google, message style like image\r\n\r\nI want just one text e.g "ACADEMIC PLANNER" so how can ı remove front of Academic "null:" and other words ?', 1, 0, 0, '2016-11-01 05:37:58'),
-(4, 'nt Server using new Query. I get this Error " There is already an object named \'Author', 'nt Server using new Query. I get this Error " There is already an object named \'Author\' in the database." I have no knowledge of what it means or how should be corrected. I can not go to the next steps in the course if I ca`t ', 1, 0, 0, '2016-11-01 05:44:46'),
-(5, '2016 Presidential Election', '2016 Presidential Election', 6, 0, 0, '2016-11-01 07:51:21'),
-(6, 'Plain Picture and Plain text in Tableview', 'Plain Picture and Plain text in Tableview', 6, 0, 0, '2016-11-01 07:52:53'),
-(7, 'Xcode Search Bar - Can\'t search through NSObjects containing NS', '<pre>\r\n ~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*?~!@#$%^&amp;*()_+_)(*&amp;^%$#@!~}{:&quot;&gt;&lt;??:{}+}\\|}{P{}|-/*? \\n\\n &lt;!-- unless you cannot read this --&gt;</pre>\r\n', 1, 0, 0, '2016-11-06 00:01:14'),
-(8, 'safasdf', '<p>I think some of my user setting have been changed by someone else. when I open the share property, I accidentally find that all my pass have an extra route, P\\ as you can see in the following picture. And this P, I guess stands for a network computers I found in my WLAN network show in the second picture. Do anyone know what is going on here and what should I do to remove this route? It seems like that all my files right now is being shared on the network router I connected.</p>\r\n\r\n<p><a href="https://i.stack.imgur.com/g947K.png" rel="nofollow noreferrer"><img alt="enter image description here" src="https://i.stack.imgur.com/g947K.png" /></a></p>\r\n', 4, 0, 0, '2016-11-06 00:22:15'),
-(9, 'jhkhlk', '<p>&lt;script type=&#39;text/ajvascript&#39; src=&#39;<a href="http://badserver/evilJavascript.js" rel="nofollow" target="_blank">http://badserver/evilJavascript.js</a>&#39;&gt;</p>\r\n', 4, 0, 0, '2016-11-06 15:50:47');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tags`
---
-
-CREATE TABLE `tags` (
-  `tag_id` int(11) NOT NULL,
-  `tag_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `uname` varchar(22) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `avatar_id` int(1) NOT NULL,
-  `avatar_type` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `uname`, `password`, `avatar_id`, `avatar_type`) VALUES
-(1, 'admin', '4e77c5eed085c1a433a6ddc8bf4130c9', 2, 0),
-(2, 'pvenkman', '41f05c9bf093ca30867d7f352849fe15', 1, 0),
-(3, 'rstantz', '3a6ac1b0a7dc16801e2522454d778f01', 0, 0),
-(4, 'dbarrett', 'fda14faa279c1123604c06f756c7af14', 0, 0),
-(5, 'ltully', '50f8b210f0fb2ccdf14bb51804a8967f', 1, 0),
-(6, 'espengler', 'f169a4141e900076e5f2b0bb2083b4a4', 3, 0);
+(1, 'python', 0, 0, 0, 0),
+(2, 'reaact', 0, 0, 0, 0),
+(3, 'angular', 0, 0, 0, 0),
+(4, 'phpmyadmin', 0, 0, 0, 0),
+(5, 'sql', 0, 0, 0, 0),
+(6, 'html', 0, 0, 0, 0),
+(7, 'javascript', 0, 0, 0, 0),
+(8, 'php', 0, 0, 0, 0),
+(9, 'css', 0, 0, 0, 0),
+(10, 'wordpress', 0, 0, 0, 0),
+(11, 'ajax', 0, 0, 0, 0),
+(12, 'jquery', 0, 0, 0, 0),
+(13, 'andriod', 0, 0, 0, 0),
+(14, 'java', 0, 0, 0, 0),
+(15, 'sockets', 0, 0, 0, 0),
+(16, 'native', 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `answers`
---
-ALTER TABLE `answers`
-  ADD PRIMARY KEY (`ans_id`);
-
---
--- Indexes for table `answers_votes`
---
-ALTER TABLE `answers_votes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `avatar`
---
-ALTER TABLE `avatar`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `qa_blobs`
@@ -513,6 +399,9 @@ ALTER TABLE `qa_posts`
   ADD KEY `categoryid_2` (`updated`,`type`),
   ADD KEY `lastuserid` (`updated`,`type`),
   ADD KEY `lastip` (`updated`,`type`);
+ALTER TABLE `qa_posts` ADD FULLTEXT KEY `index_name` (`title`);
+ALTER TABLE `qa_posts` ADD FULLTEXT KEY `index_name2` (`content`);
+ALTER TABLE `qa_posts` ADD FULLTEXT KEY `index_name3` (`tags`);
 
 --
 -- Indexes for table `qa_posttags`
@@ -570,88 +459,29 @@ ALTER TABLE `qa_words`
   ADD KEY `tagcount` (`tagcount`);
 
 --
--- Indexes for table `question_votes`
---
-ALTER TABLE `question_votes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `questions`
---
-ALTER TABLE `questions`
-  ADD PRIMARY KEY (`question_id`);
-
---
--- Indexes for table `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`tag_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `answers`
---
-ALTER TABLE `answers`
-  MODIFY `ans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `answers_votes`
---
-ALTER TABLE `answers_votes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `avatar`
---
-ALTER TABLE `avatar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
 -- AUTO_INCREMENT for table `qa_blobs`
 --
 ALTER TABLE `qa_blobs`
-  MODIFY `blobid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `blobid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `qa_posts`
 --
 ALTER TABLE `qa_posts`
-  MODIFY `postid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `postid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `qa_users`
 --
 ALTER TABLE `qa_users`
-  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `qa_words`
 --
 ALTER TABLE `qa_words`
-  MODIFY `wordid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT for table `question_votes`
---
-ALTER TABLE `question_votes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `tags`
---
-ALTER TABLE `tags`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `wordid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
