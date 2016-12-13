@@ -12,8 +12,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/cloud.php';
 date_default_timezone_set('America/New_York');
 
 
-$config["upload_url"] = 'http://localhost:8888/img/uploads/';
-
 
 $connection = new Db();
 $bbcode = new BBCode;
@@ -21,7 +19,7 @@ $cloud = new WordCloud();
 
 
 $handle = $connection -> quote($_GET['handle']);
-
+if (isset($_GET['handle'])):
 $sql = $connection -> select("SELECT `avatarblobid`,`filename`,`qa_users`.`created`,`qa_users`.`handle`, `gravatar` FROM `qa_users` INNER JOIN `qa_blobs` ON `qa_users`.`avatarblobid` = `qa_blobs`.`blobid` WHERE `qa_users`.`handle`=".$handle.";");
 $created;
 $points = $connection -> select("SELECT * FROM `qa_userpoints` INNER JOIN `qa_users` ON `qa_users`.`userid` = `qa_userpoints`.`userid` WHERE `handle`=".$handle." ORDER BY `points` DESC;");
@@ -42,7 +40,7 @@ foreach ($points as $key => $value) {
   $downvoteds = $value['downvoteds'];
 }
 ?>
-<?php if (isset($_GET['handle'])): ?>
+
 
 
 <div class="container">
